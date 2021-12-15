@@ -18,15 +18,18 @@ const friend from oclif! (./src/commands/const/index.ts)
 
   async run(): Promise<void> {
     // const {args, flags} = await this.parse(Const)
-    const DivvyTx = await import('../../generated/regen/divvy/v1/tx')
+
     const PROTO: Record<string, Record<string, Record<string, string>>> = {}
-    const TxImports = [DivvyTx]
+    const TxImports = [
+      await import('../../generated/regen/divvy/v1/tx'),
+      await import('../../generated/regen/ecocredit/v1alpha2/tx'),
+    ]
 
     for (const eachTxModule of TxImports) {
-      const eachExport = Object.keys(DivvyTx)
+      const eachExport = Object.keys(eachTxModule)
       let [root, mod] = eachTxModule.protobufPackage.split('.')
-      root = capitalCase(root)
-      mod = capitalCase(mod)
+      root = root.toUpperCase()
+      mod = mod.toUpperCase()
       for (const eachMsg of eachExport) {
         // this.log(eachMsg, eachMsg.indexOf('Msg'))
         PROTO[root] = PROTO[root] ?? {}

@@ -3,9 +3,58 @@ protots (oclif generated cli)
 
 protots const will generate a tree of constants for all tx in the given folder. ([eventually via #3](https://github.com/onezoomin/protots/issues/3))
 
+### example command and output
+`./bin/dev const src/generated/cosmos/ -i '["v1/tx.ts", "v1beta1/tx.ts"]' `
 
-
-
+```js
+export const MSGS = {
+  "COSMOS": {
+    "BANK": {
+      "SEND": "/cosmos.bank.v1beta1.MsgSend",
+      "MULTI_SEND": "/cosmos.bank.v1beta1.MsgMultiSend",
+      "CLIENT_IMPL": "/cosmos.bank.v1beta1.MsgClientImpl"
+    },
+    "DISTRIBUTION": {
+      "SET_WITHDRAW_ADDRESS": "/cosmos.distribution.v1beta1.MsgSetWithdrawAddress",
+      "WITHDRAW_DELEGATOR_REWARD": "/cosmos.distribution.v1beta1.MsgWithdrawDelegatorReward",
+      "WITHDRAW_VALIDATOR_COMMISSION": "/cosmos.distribution.v1beta1.MsgWithdrawValidatorCommission",
+      "FUND_COMMUNITY_POOL": "/cosmos.distribution.v1beta1.MsgFundCommunityPool",
+      "CLIENT_IMPL": "/cosmos.distribution.v1beta1.MsgClientImpl"
+    },
+    "CRISIS": {
+      "VERIFY_INVARIANT": "/cosmos.crisis.v1beta1.MsgVerifyInvariant",
+      "CLIENT_IMPL": "/cosmos.crisis.v1beta1.MsgClientImpl"
+    },
+    "EVIDENCE": {
+      "SUBMIT_EVIDENCE": "/cosmos.evidence.v1beta1.MsgSubmitEvidence",
+      "CLIENT_IMPL": "/cosmos.evidence.v1beta1.MsgClientImpl"
+    },
+    "GOV": {
+      "SUBMIT_PROPOSAL": "/cosmos.gov.v1beta1.MsgSubmitProposal",
+      "VOTE": "/cosmos.gov.v1beta1.MsgVote",
+      "DEPOSIT": "/cosmos.gov.v1beta1.MsgDeposit",
+      "CLIENT_IMPL": "/cosmos.gov.v1beta1.MsgClientImpl"
+    },
+    "VESTING": {
+      "CREATE_VESTING_ACCOUNT": "/cosmos.vesting.v1beta1.MsgCreateVestingAccount",
+      "CLIENT_IMPL": "/cosmos.vesting.v1beta1.MsgClientImpl"
+    },
+    "SLASHING": {
+      "UNJAIL": "/cosmos.slashing.v1beta1.MsgUnjail",
+      "CLIENT_IMPL": "/cosmos.slashing.v1beta1.MsgClientImpl"
+    },
+    "STAKING": {
+      "CREATE_VALIDATOR": "/cosmos.staking.v1beta1.MsgCreateValidator",
+      "EDIT_VALIDATOR": "/cosmos.staking.v1beta1.MsgEditValidator",
+      "DELEGATE": "/cosmos.staking.v1beta1.MsgDelegate",
+      "BEGIN_REDELEGATE": "/cosmos.staking.v1beta1.MsgBeginRedelegate",
+      "UNDELEGATE": "/cosmos.staking.v1beta1.MsgUndelegate",
+      "CLIENT_IMPL": "/cosmos.staking.v1beta1.MsgClientImpl"
+    },
+    "TX": {}
+  }
+} 
+```
 ...  
 =================
 oclif example stuff below

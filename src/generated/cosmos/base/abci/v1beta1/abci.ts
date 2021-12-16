@@ -1,6 +1,6 @@
 /* eslint-disable */
-import { util, configure, Writer, Reader } from 'protobufjs/minimal';
-import * as Long from 'long';
+import Long from 'long';
+import _m0 from 'protobufjs/minimal';
 import { Any } from '../../../../google/protobuf/any';
 import { Event } from '../../../../tendermint/abci/types';
 
@@ -153,7 +153,10 @@ const baseTxResponse: object = {
 };
 
 export const TxResponse = {
-	encode(message: TxResponse, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: TxResponse,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (!message.height.isZero()) {
 			writer.uint32(8).int64(message.height);
 		}
@@ -193,8 +196,9 @@ export const TxResponse = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): TxResponse {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): TxResponse {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseTxResponse } as TxResponse;
 		message.logs = [];
@@ -305,7 +309,7 @@ export const TxResponse = {
 			(obj.height = (message.height || Long.ZERO).toString());
 		message.txhash !== undefined && (obj.txhash = message.txhash);
 		message.codespace !== undefined && (obj.codespace = message.codespace);
-		message.code !== undefined && (obj.code = message.code);
+		message.code !== undefined && (obj.code = Math.round(message.code));
 		message.data !== undefined && (obj.data = message.data);
 		message.rawLog !== undefined && (obj.rawLog = message.rawLog);
 		if (message.logs) {
@@ -362,7 +366,10 @@ export const TxResponse = {
 const baseABCIMessageLog: object = { msgIndex: 0, log: '' };
 
 export const ABCIMessageLog = {
-	encode(message: ABCIMessageLog, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: ABCIMessageLog,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.msgIndex !== 0) {
 			writer.uint32(8).uint32(message.msgIndex);
 		}
@@ -375,8 +382,9 @@ export const ABCIMessageLog = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): ABCIMessageLog {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): ABCIMessageLog {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseABCIMessageLog } as ABCIMessageLog;
 		message.events = [];
@@ -420,7 +428,8 @@ export const ABCIMessageLog = {
 
 	toJSON(message: ABCIMessageLog): unknown {
 		const obj: any = {};
-		message.msgIndex !== undefined && (obj.msgIndex = message.msgIndex);
+		message.msgIndex !== undefined &&
+			(obj.msgIndex = Math.round(message.msgIndex));
 		message.log !== undefined && (obj.log = message.log);
 		if (message.events) {
 			obj.events = message.events.map((e) =>
@@ -447,7 +456,10 @@ export const ABCIMessageLog = {
 const baseStringEvent: object = { type: '' };
 
 export const StringEvent = {
-	encode(message: StringEvent, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: StringEvent,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.type !== '') {
 			writer.uint32(10).string(message.type);
 		}
@@ -457,8 +469,9 @@ export const StringEvent = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): StringEvent {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): StringEvent {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseStringEvent } as StringEvent;
 		message.attributes = [];
@@ -520,7 +533,10 @@ export const StringEvent = {
 const baseAttribute: object = { key: '', value: '' };
 
 export const Attribute = {
-	encode(message: Attribute, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: Attribute,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.key !== '') {
 			writer.uint32(10).string(message.key);
 		}
@@ -530,8 +546,9 @@ export const Attribute = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): Attribute {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): Attribute {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseAttribute } as Attribute;
 		while (reader.pos < end) {
@@ -584,7 +601,10 @@ export const Attribute = {
 const baseGasInfo: object = { gasWanted: Long.UZERO, gasUsed: Long.UZERO };
 
 export const GasInfo = {
-	encode(message: GasInfo, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: GasInfo,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (!message.gasWanted.isZero()) {
 			writer.uint32(8).uint64(message.gasWanted);
 		}
@@ -594,8 +614,9 @@ export const GasInfo = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): GasInfo {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): GasInfo {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseGasInfo } as GasInfo;
 		while (reader.pos < end) {
@@ -654,7 +675,10 @@ export const GasInfo = {
 const baseResult: object = { log: '' };
 
 export const Result = {
-	encode(message: Result, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: Result,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.data.length !== 0) {
 			writer.uint32(10).bytes(message.data);
 		}
@@ -667,8 +691,9 @@ export const Result = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): Result {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): Result {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseResult } as Result;
 		message.events = [];
@@ -740,8 +765,8 @@ const baseSimulationResponse: object = {};
 export const SimulationResponse = {
 	encode(
 		message: SimulationResponse,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.gasInfo !== undefined) {
 			GasInfo.encode(message.gasInfo, writer.uint32(10).fork()).ldelim();
 		}
@@ -751,8 +776,12 @@ export const SimulationResponse = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): SimulationResponse {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(
+		input: _m0.Reader | Uint8Array,
+		length?: number
+	): SimulationResponse {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseSimulationResponse } as SimulationResponse;
 		while (reader.pos < end) {
@@ -817,7 +846,10 @@ export const SimulationResponse = {
 const baseMsgData: object = { msgType: '' };
 
 export const MsgData = {
-	encode(message: MsgData, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: MsgData,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.msgType !== '') {
 			writer.uint32(10).string(message.msgType);
 		}
@@ -827,8 +859,9 @@ export const MsgData = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): MsgData {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): MsgData {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseMsgData } as MsgData;
 		message.data = new Uint8Array();
@@ -883,15 +916,19 @@ export const MsgData = {
 const baseTxMsgData: object = {};
 
 export const TxMsgData = {
-	encode(message: TxMsgData, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: TxMsgData,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		for (const v of message.data) {
 			MsgData.encode(v!, writer.uint32(10).fork()).ldelim();
 		}
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): TxMsgData {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): TxMsgData {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseTxMsgData } as TxMsgData;
 		message.data = [];
@@ -945,7 +982,10 @@ const baseSearchTxsResult: object = {
 };
 
 export const SearchTxsResult = {
-	encode(message: SearchTxsResult, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: SearchTxsResult,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (!message.totalCount.isZero()) {
 			writer.uint32(8).uint64(message.totalCount);
 		}
@@ -967,8 +1007,9 @@ export const SearchTxsResult = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): SearchTxsResult {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): SearchTxsResult {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseSearchTxsResult } as SearchTxsResult;
 		message.txs = [];
@@ -1145,9 +1186,7 @@ export type Exact<P, I extends P> = P extends Builtin
 				never
 			>;
 
-// If you get a compile-error about 'Constructor<Long> and ... have no overlap',
-// add '--ts_proto_opt=esModuleInterop=true' as a flag when calling 'protoc'.
-if (util.Long !== Long) {
-	util.Long = Long as any;
-	configure();
+if (_m0.util.Long !== Long) {
+	_m0.util.Long = Long as any;
+	_m0.configure();
 }

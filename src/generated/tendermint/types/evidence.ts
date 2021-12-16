@@ -1,6 +1,6 @@
 /* eslint-disable */
-import { util, configure, Writer, Reader } from 'protobufjs/minimal';
-import * as Long from 'long';
+import Long from 'long';
+import _m0 from 'protobufjs/minimal';
 import { Vote, LightBlock } from '../../tendermint/types/types';
 import { Timestamp } from '../../google/protobuf/timestamp';
 import { Validator } from '../../tendermint/types/validator';
@@ -37,7 +37,10 @@ export interface EvidenceList {
 const baseEvidence: object = {};
 
 export const Evidence = {
-	encode(message: Evidence, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: Evidence,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.duplicateVoteEvidence !== undefined) {
 			DuplicateVoteEvidence.encode(
 				message.duplicateVoteEvidence,
@@ -53,8 +56,9 @@ export const Evidence = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): Evidence {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): Evidence {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseEvidence } as Evidence;
 		while (reader.pos < end) {
@@ -141,8 +145,8 @@ const baseDuplicateVoteEvidence: object = {
 export const DuplicateVoteEvidence = {
 	encode(
 		message: DuplicateVoteEvidence,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.voteA !== undefined) {
 			Vote.encode(message.voteA, writer.uint32(10).fork()).ldelim();
 		}
@@ -164,8 +168,12 @@ export const DuplicateVoteEvidence = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): DuplicateVoteEvidence {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(
+		input: _m0.Reader | Uint8Array,
+		length?: number
+	): DuplicateVoteEvidence {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = {
 			...baseDuplicateVoteEvidence,
@@ -287,8 +295,8 @@ const baseLightClientAttackEvidence: object = {
 export const LightClientAttackEvidence = {
 	encode(
 		message: LightClientAttackEvidence,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.conflictingBlock !== undefined) {
 			LightBlock.encode(
 				message.conflictingBlock,
@@ -314,10 +322,11 @@ export const LightClientAttackEvidence = {
 	},
 
 	decode(
-		input: Reader | Uint8Array,
+		input: _m0.Reader | Uint8Array,
 		length?: number
 	): LightClientAttackEvidence {
-		const reader = input instanceof Reader ? input : new Reader(input);
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = {
 			...baseLightClientAttackEvidence,
@@ -439,15 +448,19 @@ export const LightClientAttackEvidence = {
 const baseEvidenceList: object = {};
 
 export const EvidenceList = {
-	encode(message: EvidenceList, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: EvidenceList,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		for (const v of message.evidence) {
 			Evidence.encode(v!, writer.uint32(10).fork()).ldelim();
 		}
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): EvidenceList {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): EvidenceList {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseEvidenceList } as EvidenceList;
 		message.evidence = [];
@@ -552,9 +565,7 @@ function numberToLong(number: number) {
 	return Long.fromNumber(number);
 }
 
-// If you get a compile-error about 'Constructor<Long> and ... have no overlap',
-// add '--ts_proto_opt=esModuleInterop=true' as a flag when calling 'protoc'.
-if (util.Long !== Long) {
-	util.Long = Long as any;
-	configure();
+if (_m0.util.Long !== Long) {
+	_m0.util.Long = Long as any;
+	_m0.configure();
 }

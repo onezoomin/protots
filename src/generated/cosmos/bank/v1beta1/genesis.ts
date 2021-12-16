@@ -1,6 +1,6 @@
 /* eslint-disable */
-import { util, configure, Writer, Reader } from 'protobufjs/minimal';
-import * as Long from 'long';
+import Long from 'long';
+import _m0 from 'protobufjs/minimal';
 import { Params, Metadata } from '../../../cosmos/bank/v1beta1/bank';
 import { Coin } from '../../../cosmos/base/v1beta1/coin';
 
@@ -32,7 +32,10 @@ export interface Balance {
 const baseGenesisState: object = {};
 
 export const GenesisState = {
-	encode(message: GenesisState, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: GenesisState,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.params !== undefined) {
 			Params.encode(message.params, writer.uint32(10).fork()).ldelim();
 		}
@@ -48,8 +51,9 @@ export const GenesisState = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): GenesisState {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): GenesisState {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseGenesisState } as GenesisState;
 		message.balances = [];
@@ -150,7 +154,10 @@ export const GenesisState = {
 const baseBalance: object = { address: '' };
 
 export const Balance = {
-	encode(message: Balance, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: Balance,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.address !== '') {
 			writer.uint32(10).string(message.address);
 		}
@@ -160,8 +167,9 @@ export const Balance = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): Balance {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): Balance {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseBalance } as Balance;
 		message.coins = [];
@@ -242,9 +250,7 @@ export type Exact<P, I extends P> = P extends Builtin
 				never
 			>;
 
-// If you get a compile-error about 'Constructor<Long> and ... have no overlap',
-// add '--ts_proto_opt=esModuleInterop=true' as a flag when calling 'protoc'.
-if (util.Long !== Long) {
-	util.Long = Long as any;
-	configure();
+if (_m0.util.Long !== Long) {
+	_m0.util.Long = Long as any;
+	_m0.configure();
 }

@@ -1,6 +1,6 @@
 /* eslint-disable */
-import { util, configure, Writer, Reader } from 'protobufjs/minimal';
-import * as Long from 'long';
+import Long from 'long';
+import _m0 from 'protobufjs/minimal';
 import { Any } from '../../../google/protobuf/any';
 
 export const protobufPackage = 'cosmos.evidence.v1beta1';
@@ -25,8 +25,8 @@ const baseMsgSubmitEvidence: object = { submitter: '' };
 export const MsgSubmitEvidence = {
 	encode(
 		message: MsgSubmitEvidence,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.submitter !== '') {
 			writer.uint32(10).string(message.submitter);
 		}
@@ -36,8 +36,9 @@ export const MsgSubmitEvidence = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): MsgSubmitEvidence {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): MsgSubmitEvidence {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseMsgSubmitEvidence } as MsgSubmitEvidence;
 		while (reader.pos < end) {
@@ -98,8 +99,8 @@ const baseMsgSubmitEvidenceResponse: object = {};
 export const MsgSubmitEvidenceResponse = {
 	encode(
 		message: MsgSubmitEvidenceResponse,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.hash.length !== 0) {
 			writer.uint32(34).bytes(message.hash);
 		}
@@ -107,10 +108,11 @@ export const MsgSubmitEvidenceResponse = {
 	},
 
 	decode(
-		input: Reader | Uint8Array,
+		input: _m0.Reader | Uint8Array,
 		length?: number
 	): MsgSubmitEvidenceResponse {
-		const reader = input instanceof Reader ? input : new Reader(input);
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = {
 			...baseMsgSubmitEvidenceResponse,
@@ -188,7 +190,7 @@ export class MsgClientImpl implements Msg {
 			data
 		);
 		return promise.then((data) =>
-			MsgSubmitEvidenceResponse.decode(new Reader(data))
+			MsgSubmitEvidenceResponse.decode(new _m0.Reader(data))
 		);
 	}
 }
@@ -264,9 +266,7 @@ export type Exact<P, I extends P> = P extends Builtin
 				never
 			>;
 
-// If you get a compile-error about 'Constructor<Long> and ... have no overlap',
-// add '--ts_proto_opt=esModuleInterop=true' as a flag when calling 'protoc'.
-if (util.Long !== Long) {
-	util.Long = Long as any;
-	configure();
+if (_m0.util.Long !== Long) {
+	_m0.util.Long = Long as any;
+	_m0.configure();
 }

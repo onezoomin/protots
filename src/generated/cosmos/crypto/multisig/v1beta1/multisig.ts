@@ -1,6 +1,6 @@
 /* eslint-disable */
-import { util, configure, Writer, Reader } from 'protobufjs/minimal';
-import * as Long from 'long';
+import Long from 'long';
+import _m0 from 'protobufjs/minimal';
 
 export const protobufPackage = 'cosmos.crypto.multisig.v1beta1';
 
@@ -27,15 +27,19 @@ export interface CompactBitArray {
 const baseMultiSignature: object = {};
 
 export const MultiSignature = {
-	encode(message: MultiSignature, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: MultiSignature,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		for (const v of message.signatures) {
 			writer.uint32(10).bytes(v!);
 		}
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): MultiSignature {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): MultiSignature {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseMultiSignature } as MultiSignature;
 		message.signatures = [];
@@ -85,7 +89,10 @@ export const MultiSignature = {
 const baseCompactBitArray: object = { extraBitsStored: 0 };
 
 export const CompactBitArray = {
-	encode(message: CompactBitArray, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: CompactBitArray,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.extraBitsStored !== 0) {
 			writer.uint32(8).uint32(message.extraBitsStored);
 		}
@@ -95,8 +102,9 @@ export const CompactBitArray = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): CompactBitArray {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): CompactBitArray {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseCompactBitArray } as CompactBitArray;
 		message.elems = new Uint8Array();
@@ -134,7 +142,7 @@ export const CompactBitArray = {
 	toJSON(message: CompactBitArray): unknown {
 		const obj: any = {};
 		message.extraBitsStored !== undefined &&
-			(obj.extraBitsStored = message.extraBitsStored);
+			(obj.extraBitsStored = Math.round(message.extraBitsStored));
 		message.elems !== undefined &&
 			(obj.elems = base64FromBytes(
 				message.elems !== undefined ? message.elems : new Uint8Array()
@@ -215,9 +223,7 @@ export type Exact<P, I extends P> = P extends Builtin
 				never
 			>;
 
-// If you get a compile-error about 'Constructor<Long> and ... have no overlap',
-// add '--ts_proto_opt=esModuleInterop=true' as a flag when calling 'protoc'.
-if (util.Long !== Long) {
-	util.Long = Long as any;
-	configure();
+if (_m0.util.Long !== Long) {
+	_m0.util.Long = Long as any;
+	_m0.configure();
 }

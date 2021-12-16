@@ -1,6 +1,6 @@
 /* eslint-disable */
-import { util, configure, Writer, Reader } from 'protobufjs/minimal';
-import * as Long from 'long';
+import Long from 'long';
+import _m0 from 'protobufjs/minimal';
 import { Any } from '../../../google/protobuf/any';
 import {
 	PageRequest,
@@ -46,16 +46,20 @@ const baseQueryEvidenceRequest: object = {};
 export const QueryEvidenceRequest = {
 	encode(
 		message: QueryEvidenceRequest,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.evidenceHash.length !== 0) {
 			writer.uint32(10).bytes(message.evidenceHash);
 		}
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): QueryEvidenceRequest {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(
+		input: _m0.Reader | Uint8Array,
+		length?: number
+	): QueryEvidenceRequest {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseQueryEvidenceRequest } as QueryEvidenceRequest;
 		message.evidenceHash = new Uint8Array();
@@ -107,16 +111,20 @@ const baseQueryEvidenceResponse: object = {};
 export const QueryEvidenceResponse = {
 	encode(
 		message: QueryEvidenceResponse,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.evidence !== undefined) {
 			Any.encode(message.evidence, writer.uint32(10).fork()).ldelim();
 		}
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): QueryEvidenceResponse {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(
+		input: _m0.Reader | Uint8Array,
+		length?: number
+	): QueryEvidenceResponse {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = {
 			...baseQueryEvidenceResponse,
@@ -174,8 +182,8 @@ const baseQueryAllEvidenceRequest: object = {};
 export const QueryAllEvidenceRequest = {
 	encode(
 		message: QueryAllEvidenceRequest,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.pagination !== undefined) {
 			PageRequest.encode(
 				message.pagination,
@@ -186,10 +194,11 @@ export const QueryAllEvidenceRequest = {
 	},
 
 	decode(
-		input: Reader | Uint8Array,
+		input: _m0.Reader | Uint8Array,
 		length?: number
 	): QueryAllEvidenceRequest {
-		const reader = input instanceof Reader ? input : new Reader(input);
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = {
 			...baseQueryAllEvidenceRequest,
@@ -250,8 +259,8 @@ const baseQueryAllEvidenceResponse: object = {};
 export const QueryAllEvidenceResponse = {
 	encode(
 		message: QueryAllEvidenceResponse,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		for (const v of message.evidence) {
 			Any.encode(v!, writer.uint32(10).fork()).ldelim();
 		}
@@ -265,10 +274,11 @@ export const QueryAllEvidenceResponse = {
 	},
 
 	decode(
-		input: Reader | Uint8Array,
+		input: _m0.Reader | Uint8Array,
 		length?: number
 	): QueryAllEvidenceResponse {
-		const reader = input instanceof Reader ? input : new Reader(input);
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = {
 			...baseQueryAllEvidenceResponse,
@@ -365,7 +375,7 @@ export class QueryClientImpl implements Query {
 			data
 		);
 		return promise.then((data) =>
-			QueryEvidenceResponse.decode(new Reader(data))
+			QueryEvidenceResponse.decode(new _m0.Reader(data))
 		);
 	}
 
@@ -379,7 +389,7 @@ export class QueryClientImpl implements Query {
 			data
 		);
 		return promise.then((data) =>
-			QueryAllEvidenceResponse.decode(new Reader(data))
+			QueryAllEvidenceResponse.decode(new _m0.Reader(data))
 		);
 	}
 }
@@ -455,9 +465,7 @@ export type Exact<P, I extends P> = P extends Builtin
 				never
 			>;
 
-// If you get a compile-error about 'Constructor<Long> and ... have no overlap',
-// add '--ts_proto_opt=esModuleInterop=true' as a flag when calling 'protoc'.
-if (util.Long !== Long) {
-	util.Long = Long as any;
-	configure();
+if (_m0.util.Long !== Long) {
+	_m0.util.Long = Long as any;
+	_m0.configure();
 }

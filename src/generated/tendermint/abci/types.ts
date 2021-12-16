@@ -1,6 +1,6 @@
 /* eslint-disable */
-import { util, configure, Writer, Reader } from 'protobufjs/minimal';
-import * as Long from 'long';
+import Long from 'long';
+import _m0 from 'protobufjs/minimal';
 import { Header } from '../../tendermint/types/types';
 import { ProofOps } from '../../tendermint/crypto/proof';
 import {
@@ -548,7 +548,10 @@ export interface Snapshot {
 const baseRequest: object = {};
 
 export const Request = {
-	encode(message: Request, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: Request,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.echo !== undefined) {
 			RequestEcho.encode(message.echo, writer.uint32(10).fork()).ldelim();
 		}
@@ -636,8 +639,9 @@ export const Request = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): Request {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): Request {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseRequest } as Request;
 		while (reader.pos < end) {
@@ -941,15 +945,19 @@ export const Request = {
 const baseRequestEcho: object = { message: '' };
 
 export const RequestEcho = {
-	encode(message: RequestEcho, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: RequestEcho,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.message !== '') {
 			writer.uint32(10).string(message.message);
 		}
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): RequestEcho {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): RequestEcho {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseRequestEcho } as RequestEcho;
 		while (reader.pos < end) {
@@ -993,12 +1001,16 @@ export const RequestEcho = {
 const baseRequestFlush: object = {};
 
 export const RequestFlush = {
-	encode(_: RequestFlush, writer: Writer = Writer.create()): Writer {
+	encode(
+		_: RequestFlush,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): RequestFlush {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): RequestFlush {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseRequestFlush } as RequestFlush;
 		while (reader.pos < end) {
@@ -1037,7 +1049,10 @@ const baseRequestInfo: object = {
 };
 
 export const RequestInfo = {
-	encode(message: RequestInfo, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: RequestInfo,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.version !== '') {
 			writer.uint32(10).string(message.version);
 		}
@@ -1050,8 +1065,9 @@ export const RequestInfo = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): RequestInfo {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): RequestInfo {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseRequestInfo } as RequestInfo;
 		while (reader.pos < end) {
@@ -1125,8 +1141,8 @@ const baseRequestSetOption: object = { key: '', value: '' };
 export const RequestSetOption = {
 	encode(
 		message: RequestSetOption,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.key !== '') {
 			writer.uint32(10).string(message.key);
 		}
@@ -1136,8 +1152,9 @@ export const RequestSetOption = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): RequestSetOption {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): RequestSetOption {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseRequestSetOption } as RequestSetOption;
 		while (reader.pos < end) {
@@ -1192,8 +1209,8 @@ const baseRequestInitChain: object = { chainId: '', initialHeight: Long.ZERO };
 export const RequestInitChain = {
 	encode(
 		message: RequestInitChain,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.time !== undefined) {
 			Timestamp.encode(
 				toTimestamp(message.time),
@@ -1221,8 +1238,9 @@ export const RequestInitChain = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): RequestInitChain {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): RequestInitChain {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseRequestInitChain } as RequestInitChain;
 		message.validators = [];
@@ -1345,7 +1363,10 @@ export const RequestInitChain = {
 const baseRequestQuery: object = { path: '', height: Long.ZERO, prove: false };
 
 export const RequestQuery = {
-	encode(message: RequestQuery, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: RequestQuery,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.data.length !== 0) {
 			writer.uint32(10).bytes(message.data);
 		}
@@ -1361,8 +1382,9 @@ export const RequestQuery = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): RequestQuery {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): RequestQuery {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseRequestQuery } as RequestQuery;
 		message.data = new Uint8Array();
@@ -1443,8 +1465,8 @@ const baseRequestBeginBlock: object = {};
 export const RequestBeginBlock = {
 	encode(
 		message: RequestBeginBlock,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.hash.length !== 0) {
 			writer.uint32(10).bytes(message.hash);
 		}
@@ -1463,8 +1485,9 @@ export const RequestBeginBlock = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): RequestBeginBlock {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): RequestBeginBlock {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseRequestBeginBlock } as RequestBeginBlock;
 		message.byzantineValidators = [];
@@ -1566,7 +1589,10 @@ export const RequestBeginBlock = {
 const baseRequestCheckTx: object = { type: 0 };
 
 export const RequestCheckTx = {
-	encode(message: RequestCheckTx, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: RequestCheckTx,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.tx.length !== 0) {
 			writer.uint32(10).bytes(message.tx);
 		}
@@ -1576,8 +1602,9 @@ export const RequestCheckTx = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): RequestCheckTx {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): RequestCheckTx {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseRequestCheckTx } as RequestCheckTx;
 		message.tx = new Uint8Array();
@@ -1637,16 +1664,17 @@ const baseRequestDeliverTx: object = {};
 export const RequestDeliverTx = {
 	encode(
 		message: RequestDeliverTx,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.tx.length !== 0) {
 			writer.uint32(10).bytes(message.tx);
 		}
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): RequestDeliverTx {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): RequestDeliverTx {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseRequestDeliverTx } as RequestDeliverTx;
 		message.tx = new Uint8Array();
@@ -1694,15 +1722,19 @@ export const RequestDeliverTx = {
 const baseRequestEndBlock: object = { height: Long.ZERO };
 
 export const RequestEndBlock = {
-	encode(message: RequestEndBlock, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: RequestEndBlock,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (!message.height.isZero()) {
 			writer.uint32(8).int64(message.height);
 		}
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): RequestEndBlock {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): RequestEndBlock {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseRequestEndBlock } as RequestEndBlock;
 		while (reader.pos < end) {
@@ -1750,12 +1782,16 @@ export const RequestEndBlock = {
 const baseRequestCommit: object = {};
 
 export const RequestCommit = {
-	encode(_: RequestCommit, writer: Writer = Writer.create()): Writer {
+	encode(
+		_: RequestCommit,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): RequestCommit {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): RequestCommit {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseRequestCommit } as RequestCommit;
 		while (reader.pos < end) {
@@ -1790,12 +1826,19 @@ export const RequestCommit = {
 const baseRequestListSnapshots: object = {};
 
 export const RequestListSnapshots = {
-	encode(_: RequestListSnapshots, writer: Writer = Writer.create()): Writer {
+	encode(
+		_: RequestListSnapshots,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): RequestListSnapshots {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(
+		input: _m0.Reader | Uint8Array,
+		length?: number
+	): RequestListSnapshots {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseRequestListSnapshots } as RequestListSnapshots;
 		while (reader.pos < end) {
@@ -1832,8 +1875,8 @@ const baseRequestOfferSnapshot: object = {};
 export const RequestOfferSnapshot = {
 	encode(
 		message: RequestOfferSnapshot,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.snapshot !== undefined) {
 			Snapshot.encode(
 				message.snapshot,
@@ -1846,8 +1889,12 @@ export const RequestOfferSnapshot = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): RequestOfferSnapshot {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(
+		input: _m0.Reader | Uint8Array,
+		length?: number
+	): RequestOfferSnapshot {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseRequestOfferSnapshot } as RequestOfferSnapshot;
 		message.appHash = new Uint8Array();
@@ -1918,8 +1965,8 @@ const baseRequestLoadSnapshotChunk: object = {
 export const RequestLoadSnapshotChunk = {
 	encode(
 		message: RequestLoadSnapshotChunk,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (!message.height.isZero()) {
 			writer.uint32(8).uint64(message.height);
 		}
@@ -1933,10 +1980,11 @@ export const RequestLoadSnapshotChunk = {
 	},
 
 	decode(
-		input: Reader | Uint8Array,
+		input: _m0.Reader | Uint8Array,
 		length?: number
 	): RequestLoadSnapshotChunk {
-		const reader = input instanceof Reader ? input : new Reader(input);
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = {
 			...baseRequestLoadSnapshotChunk,
@@ -1984,8 +2032,9 @@ export const RequestLoadSnapshotChunk = {
 		const obj: any = {};
 		message.height !== undefined &&
 			(obj.height = (message.height || Long.UZERO).toString());
-		message.format !== undefined && (obj.format = message.format);
-		message.chunk !== undefined && (obj.chunk = message.chunk);
+		message.format !== undefined &&
+			(obj.format = Math.round(message.format));
+		message.chunk !== undefined && (obj.chunk = Math.round(message.chunk));
 		return obj;
 	},
 
@@ -2010,8 +2059,8 @@ const baseRequestApplySnapshotChunk: object = { index: 0, sender: '' };
 export const RequestApplySnapshotChunk = {
 	encode(
 		message: RequestApplySnapshotChunk,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.index !== 0) {
 			writer.uint32(8).uint32(message.index);
 		}
@@ -2025,10 +2074,11 @@ export const RequestApplySnapshotChunk = {
 	},
 
 	decode(
-		input: Reader | Uint8Array,
+		input: _m0.Reader | Uint8Array,
 		length?: number
 	): RequestApplySnapshotChunk {
-		const reader = input instanceof Reader ? input : new Reader(input);
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = {
 			...baseRequestApplySnapshotChunk,
@@ -2075,7 +2125,7 @@ export const RequestApplySnapshotChunk = {
 
 	toJSON(message: RequestApplySnapshotChunk): unknown {
 		const obj: any = {};
-		message.index !== undefined && (obj.index = message.index);
+		message.index !== undefined && (obj.index = Math.round(message.index));
 		message.chunk !== undefined &&
 			(obj.chunk = base64FromBytes(
 				message.chunk !== undefined ? message.chunk : new Uint8Array()
@@ -2100,7 +2150,10 @@ export const RequestApplySnapshotChunk = {
 const baseResponse: object = {};
 
 export const Response = {
-	encode(message: Response, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: Response,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.exception !== undefined) {
 			ResponseException.encode(
 				message.exception,
@@ -2200,8 +2253,9 @@ export const Response = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): Response {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): Response {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseResponse } as Response;
 		while (reader.pos < end) {
@@ -2530,16 +2584,17 @@ const baseResponseException: object = { error: '' };
 export const ResponseException = {
 	encode(
 		message: ResponseException,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.error !== '') {
 			writer.uint32(10).string(message.error);
 		}
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): ResponseException {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): ResponseException {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseResponseException } as ResponseException;
 		while (reader.pos < end) {
@@ -2583,15 +2638,19 @@ export const ResponseException = {
 const baseResponseEcho: object = { message: '' };
 
 export const ResponseEcho = {
-	encode(message: ResponseEcho, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: ResponseEcho,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.message !== '') {
 			writer.uint32(10).string(message.message);
 		}
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): ResponseEcho {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): ResponseEcho {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseResponseEcho } as ResponseEcho;
 		while (reader.pos < end) {
@@ -2635,12 +2694,16 @@ export const ResponseEcho = {
 const baseResponseFlush: object = {};
 
 export const ResponseFlush = {
-	encode(_: ResponseFlush, writer: Writer = Writer.create()): Writer {
+	encode(
+		_: ResponseFlush,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): ResponseFlush {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): ResponseFlush {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseResponseFlush } as ResponseFlush;
 		while (reader.pos < end) {
@@ -2680,7 +2743,10 @@ const baseResponseInfo: object = {
 };
 
 export const ResponseInfo = {
-	encode(message: ResponseInfo, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: ResponseInfo,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.data !== '') {
 			writer.uint32(10).string(message.data);
 		}
@@ -2699,8 +2765,9 @@ export const ResponseInfo = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): ResponseInfo {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): ResponseInfo {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseResponseInfo } as ResponseInfo;
 		message.lastBlockAppHash = new Uint8Array();
@@ -2801,8 +2868,8 @@ const baseResponseSetOption: object = { code: 0, log: '', info: '' };
 export const ResponseSetOption = {
 	encode(
 		message: ResponseSetOption,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.code !== 0) {
 			writer.uint32(8).uint32(message.code);
 		}
@@ -2815,8 +2882,9 @@ export const ResponseSetOption = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): ResponseSetOption {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): ResponseSetOption {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseResponseSetOption } as ResponseSetOption;
 		while (reader.pos < end) {
@@ -2858,7 +2926,7 @@ export const ResponseSetOption = {
 
 	toJSON(message: ResponseSetOption): unknown {
 		const obj: any = {};
-		message.code !== undefined && (obj.code = message.code);
+		message.code !== undefined && (obj.code = Math.round(message.code));
 		message.log !== undefined && (obj.log = message.log);
 		message.info !== undefined && (obj.info = message.info);
 		return obj;
@@ -2880,8 +2948,8 @@ const baseResponseInitChain: object = {};
 export const ResponseInitChain = {
 	encode(
 		message: ResponseInitChain,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.consensusParams !== undefined) {
 			ConsensusParams.encode(
 				message.consensusParams,
@@ -2897,8 +2965,9 @@ export const ResponseInitChain = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): ResponseInitChain {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): ResponseInitChain {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseResponseInitChain } as ResponseInitChain;
 		message.validators = [];
@@ -2993,7 +3062,10 @@ const baseResponseQuery: object = {
 };
 
 export const ResponseQuery = {
-	encode(message: ResponseQuery, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: ResponseQuery,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.code !== 0) {
 			writer.uint32(8).uint32(message.code);
 		}
@@ -3027,8 +3099,9 @@ export const ResponseQuery = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): ResponseQuery {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): ResponseQuery {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseResponseQuery } as ResponseQuery;
 		message.key = new Uint8Array();
@@ -3114,7 +3187,7 @@ export const ResponseQuery = {
 
 	toJSON(message: ResponseQuery): unknown {
 		const obj: any = {};
-		message.code !== undefined && (obj.code = message.code);
+		message.code !== undefined && (obj.code = Math.round(message.code));
 		message.log !== undefined && (obj.log = message.log);
 		message.info !== undefined && (obj.info = message.info);
 		message.index !== undefined &&
@@ -3168,16 +3241,20 @@ const baseResponseBeginBlock: object = {};
 export const ResponseBeginBlock = {
 	encode(
 		message: ResponseBeginBlock,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		for (const v of message.events) {
 			Event.encode(v!, writer.uint32(10).fork()).ldelim();
 		}
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): ResponseBeginBlock {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(
+		input: _m0.Reader | Uint8Array,
+		length?: number
+	): ResponseBeginBlock {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseResponseBeginBlock } as ResponseBeginBlock;
 		message.events = [];
@@ -3234,7 +3311,10 @@ const baseResponseCheckTx: object = {
 };
 
 export const ResponseCheckTx = {
-	encode(message: ResponseCheckTx, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: ResponseCheckTx,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.code !== 0) {
 			writer.uint32(8).uint32(message.code);
 		}
@@ -3262,8 +3342,9 @@ export const ResponseCheckTx = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): ResponseCheckTx {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): ResponseCheckTx {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseResponseCheckTx } as ResponseCheckTx;
 		message.events = [];
@@ -3341,7 +3422,7 @@ export const ResponseCheckTx = {
 
 	toJSON(message: ResponseCheckTx): unknown {
 		const obj: any = {};
-		message.code !== undefined && (obj.code = message.code);
+		message.code !== undefined && (obj.code = Math.round(message.code));
 		message.data !== undefined &&
 			(obj.data = base64FromBytes(
 				message.data !== undefined ? message.data : new Uint8Array()
@@ -3397,8 +3478,8 @@ const baseResponseDeliverTx: object = {
 export const ResponseDeliverTx = {
 	encode(
 		message: ResponseDeliverTx,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.code !== 0) {
 			writer.uint32(8).uint32(message.code);
 		}
@@ -3426,8 +3507,9 @@ export const ResponseDeliverTx = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): ResponseDeliverTx {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): ResponseDeliverTx {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseResponseDeliverTx } as ResponseDeliverTx;
 		message.events = [];
@@ -3505,7 +3587,7 @@ export const ResponseDeliverTx = {
 
 	toJSON(message: ResponseDeliverTx): unknown {
 		const obj: any = {};
-		message.code !== undefined && (obj.code = message.code);
+		message.code !== undefined && (obj.code = Math.round(message.code));
 		message.data !== undefined &&
 			(obj.data = base64FromBytes(
 				message.data !== undefined ? message.data : new Uint8Array()
@@ -3554,8 +3636,8 @@ const baseResponseEndBlock: object = {};
 export const ResponseEndBlock = {
 	encode(
 		message: ResponseEndBlock,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		for (const v of message.validatorUpdates) {
 			ValidatorUpdate.encode(v!, writer.uint32(10).fork()).ldelim();
 		}
@@ -3571,8 +3653,9 @@ export const ResponseEndBlock = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): ResponseEndBlock {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): ResponseEndBlock {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseResponseEndBlock } as ResponseEndBlock;
 		message.validatorUpdates = [];
@@ -3662,7 +3745,10 @@ export const ResponseEndBlock = {
 const baseResponseCommit: object = { retainHeight: Long.ZERO };
 
 export const ResponseCommit = {
-	encode(message: ResponseCommit, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: ResponseCommit,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.data.length !== 0) {
 			writer.uint32(18).bytes(message.data);
 		}
@@ -3672,8 +3758,9 @@ export const ResponseCommit = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): ResponseCommit {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): ResponseCommit {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseResponseCommit } as ResponseCommit;
 		message.data = new Uint8Array();
@@ -3736,16 +3823,20 @@ const baseResponseListSnapshots: object = {};
 export const ResponseListSnapshots = {
 	encode(
 		message: ResponseListSnapshots,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		for (const v of message.snapshots) {
 			Snapshot.encode(v!, writer.uint32(10).fork()).ldelim();
 		}
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): ResponseListSnapshots {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(
+		input: _m0.Reader | Uint8Array,
+		length?: number
+	): ResponseListSnapshots {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = {
 			...baseResponseListSnapshots,
@@ -3806,16 +3897,20 @@ const baseResponseOfferSnapshot: object = { result: 0 };
 export const ResponseOfferSnapshot = {
 	encode(
 		message: ResponseOfferSnapshot,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.result !== 0) {
 			writer.uint32(8).int32(message.result);
 		}
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): ResponseOfferSnapshot {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(
+		input: _m0.Reader | Uint8Array,
+		length?: number
+	): ResponseOfferSnapshot {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = {
 			...baseResponseOfferSnapshot,
@@ -3868,8 +3963,8 @@ const baseResponseLoadSnapshotChunk: object = {};
 export const ResponseLoadSnapshotChunk = {
 	encode(
 		message: ResponseLoadSnapshotChunk,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.chunk.length !== 0) {
 			writer.uint32(10).bytes(message.chunk);
 		}
@@ -3877,10 +3972,11 @@ export const ResponseLoadSnapshotChunk = {
 	},
 
 	decode(
-		input: Reader | Uint8Array,
+		input: _m0.Reader | Uint8Array,
 		length?: number
 	): ResponseLoadSnapshotChunk {
-		const reader = input instanceof Reader ? input : new Reader(input);
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = {
 			...baseResponseLoadSnapshotChunk,
@@ -3940,8 +4036,8 @@ const baseResponseApplySnapshotChunk: object = {
 export const ResponseApplySnapshotChunk = {
 	encode(
 		message: ResponseApplySnapshotChunk,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.result !== 0) {
 			writer.uint32(8).int32(message.result);
 		}
@@ -3957,10 +4053,11 @@ export const ResponseApplySnapshotChunk = {
 	},
 
 	decode(
-		input: Reader | Uint8Array,
+		input: _m0.Reader | Uint8Array,
 		length?: number
 	): ResponseApplySnapshotChunk {
-		const reader = input instanceof Reader ? input : new Reader(input);
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = {
 			...baseResponseApplySnapshotChunk,
@@ -4018,7 +4115,7 @@ export const ResponseApplySnapshotChunk = {
 				message.result
 			));
 		if (message.refetchChunks) {
-			obj.refetchChunks = message.refetchChunks.map((e) => e);
+			obj.refetchChunks = message.refetchChunks.map((e) => Math.round(e));
 		} else {
 			obj.refetchChunks = [];
 		}
@@ -4046,7 +4143,10 @@ export const ResponseApplySnapshotChunk = {
 const baseConsensusParams: object = {};
 
 export const ConsensusParams = {
-	encode(message: ConsensusParams, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: ConsensusParams,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.block !== undefined) {
 			BlockParams.encode(
 				message.block,
@@ -4074,8 +4174,9 @@ export const ConsensusParams = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): ConsensusParams {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): ConsensusParams {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseConsensusParams } as ConsensusParams;
 		while (reader.pos < end) {
@@ -4179,7 +4280,10 @@ export const ConsensusParams = {
 const baseBlockParams: object = { maxBytes: Long.ZERO, maxGas: Long.ZERO };
 
 export const BlockParams = {
-	encode(message: BlockParams, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: BlockParams,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (!message.maxBytes.isZero()) {
 			writer.uint32(8).int64(message.maxBytes);
 		}
@@ -4189,8 +4293,9 @@ export const BlockParams = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): BlockParams {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): BlockParams {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseBlockParams } as BlockParams;
 		while (reader.pos < end) {
@@ -4251,7 +4356,10 @@ export const BlockParams = {
 const baseLastCommitInfo: object = { round: 0 };
 
 export const LastCommitInfo = {
-	encode(message: LastCommitInfo, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: LastCommitInfo,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.round !== 0) {
 			writer.uint32(8).int32(message.round);
 		}
@@ -4261,8 +4369,9 @@ export const LastCommitInfo = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): LastCommitInfo {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): LastCommitInfo {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseLastCommitInfo } as LastCommitInfo;
 		message.votes = [];
@@ -4299,7 +4408,7 @@ export const LastCommitInfo = {
 
 	toJSON(message: LastCommitInfo): unknown {
 		const obj: any = {};
-		message.round !== undefined && (obj.round = message.round);
+		message.round !== undefined && (obj.round = Math.round(message.round));
 		if (message.votes) {
 			obj.votes = message.votes.map((e) =>
 				e ? VoteInfo.toJSON(e) : undefined
@@ -4323,7 +4432,10 @@ export const LastCommitInfo = {
 const baseEvent: object = { type: '' };
 
 export const Event = {
-	encode(message: Event, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: Event,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.type !== '') {
 			writer.uint32(10).string(message.type);
 		}
@@ -4333,8 +4445,9 @@ export const Event = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): Event {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): Event {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseEvent } as Event;
 		message.attributes = [];
@@ -4394,7 +4507,10 @@ export const Event = {
 const baseEventAttribute: object = { index: false };
 
 export const EventAttribute = {
-	encode(message: EventAttribute, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: EventAttribute,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.key.length !== 0) {
 			writer.uint32(10).bytes(message.key);
 		}
@@ -4407,8 +4523,9 @@ export const EventAttribute = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): EventAttribute {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): EventAttribute {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseEventAttribute } as EventAttribute;
 		message.key = new Uint8Array();
@@ -4478,7 +4595,10 @@ export const EventAttribute = {
 const baseTxResult: object = { height: Long.ZERO, index: 0 };
 
 export const TxResult = {
-	encode(message: TxResult, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: TxResult,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (!message.height.isZero()) {
 			writer.uint32(8).int64(message.height);
 		}
@@ -4497,8 +4617,9 @@ export const TxResult = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): TxResult {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): TxResult {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseTxResult } as TxResult;
 		message.tx = new Uint8Array();
@@ -4553,7 +4674,7 @@ export const TxResult = {
 		const obj: any = {};
 		message.height !== undefined &&
 			(obj.height = (message.height || Long.ZERO).toString());
-		message.index !== undefined && (obj.index = message.index);
+		message.index !== undefined && (obj.index = Math.round(message.index));
 		message.tx !== undefined &&
 			(obj.tx = base64FromBytes(
 				message.tx !== undefined ? message.tx : new Uint8Array()
@@ -4586,7 +4707,10 @@ export const TxResult = {
 const baseValidator: object = { power: Long.ZERO };
 
 export const Validator = {
-	encode(message: Validator, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: Validator,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.address.length !== 0) {
 			writer.uint32(10).bytes(message.address);
 		}
@@ -4596,8 +4720,9 @@ export const Validator = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): Validator {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): Validator {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseValidator } as Validator;
 		message.address = new Uint8Array();
@@ -4660,7 +4785,10 @@ export const Validator = {
 const baseValidatorUpdate: object = { power: Long.ZERO };
 
 export const ValidatorUpdate = {
-	encode(message: ValidatorUpdate, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: ValidatorUpdate,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.pubKey !== undefined) {
 			PublicKey.encode(message.pubKey, writer.uint32(10).fork()).ldelim();
 		}
@@ -4670,8 +4798,9 @@ export const ValidatorUpdate = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): ValidatorUpdate {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): ValidatorUpdate {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseValidatorUpdate } as ValidatorUpdate;
 		while (reader.pos < end) {
@@ -4734,7 +4863,10 @@ export const ValidatorUpdate = {
 const baseVoteInfo: object = { signedLastBlock: false };
 
 export const VoteInfo = {
-	encode(message: VoteInfo, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: VoteInfo,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.validator !== undefined) {
 			Validator.encode(
 				message.validator,
@@ -4747,8 +4879,9 @@ export const VoteInfo = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): VoteInfo {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): VoteInfo {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseVoteInfo } as VoteInfo;
 		while (reader.pos < end) {
@@ -4816,7 +4949,10 @@ const baseEvidence: object = {
 };
 
 export const Evidence = {
-	encode(message: Evidence, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: Evidence,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.type !== 0) {
 			writer.uint32(8).int32(message.type);
 		}
@@ -4841,8 +4977,9 @@ export const Evidence = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): Evidence {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): Evidence {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseEvidence } as Evidence;
 		while (reader.pos < end) {
@@ -4946,7 +5083,10 @@ export const Evidence = {
 const baseSnapshot: object = { height: Long.UZERO, format: 0, chunks: 0 };
 
 export const Snapshot = {
-	encode(message: Snapshot, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: Snapshot,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (!message.height.isZero()) {
 			writer.uint32(8).uint64(message.height);
 		}
@@ -4965,8 +5105,9 @@ export const Snapshot = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): Snapshot {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): Snapshot {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseSnapshot } as Snapshot;
 		message.hash = new Uint8Array();
@@ -5026,8 +5167,10 @@ export const Snapshot = {
 		const obj: any = {};
 		message.height !== undefined &&
 			(obj.height = (message.height || Long.UZERO).toString());
-		message.format !== undefined && (obj.format = message.format);
-		message.chunks !== undefined && (obj.chunks = message.chunks);
+		message.format !== undefined &&
+			(obj.format = Math.round(message.format));
+		message.chunks !== undefined &&
+			(obj.chunks = Math.round(message.chunks));
 		message.hash !== undefined &&
 			(obj.hash = base64FromBytes(
 				message.hash !== undefined ? message.hash : new Uint8Array()
@@ -5110,7 +5253,9 @@ export class ABCIApplicationClientImpl implements ABCIApplication {
 			'Echo',
 			data
 		);
-		return promise.then((data) => ResponseEcho.decode(new Reader(data)));
+		return promise.then((data) =>
+			ResponseEcho.decode(new _m0.Reader(data))
+		);
 	}
 
 	Flush(request: RequestFlush): Promise<ResponseFlush> {
@@ -5120,7 +5265,9 @@ export class ABCIApplicationClientImpl implements ABCIApplication {
 			'Flush',
 			data
 		);
-		return promise.then((data) => ResponseFlush.decode(new Reader(data)));
+		return promise.then((data) =>
+			ResponseFlush.decode(new _m0.Reader(data))
+		);
 	}
 
 	Info(request: RequestInfo): Promise<ResponseInfo> {
@@ -5130,7 +5277,9 @@ export class ABCIApplicationClientImpl implements ABCIApplication {
 			'Info',
 			data
 		);
-		return promise.then((data) => ResponseInfo.decode(new Reader(data)));
+		return promise.then((data) =>
+			ResponseInfo.decode(new _m0.Reader(data))
+		);
 	}
 
 	SetOption(request: RequestSetOption): Promise<ResponseSetOption> {
@@ -5141,7 +5290,7 @@ export class ABCIApplicationClientImpl implements ABCIApplication {
 			data
 		);
 		return promise.then((data) =>
-			ResponseSetOption.decode(new Reader(data))
+			ResponseSetOption.decode(new _m0.Reader(data))
 		);
 	}
 
@@ -5153,7 +5302,7 @@ export class ABCIApplicationClientImpl implements ABCIApplication {
 			data
 		);
 		return promise.then((data) =>
-			ResponseDeliverTx.decode(new Reader(data))
+			ResponseDeliverTx.decode(new _m0.Reader(data))
 		);
 	}
 
@@ -5164,7 +5313,9 @@ export class ABCIApplicationClientImpl implements ABCIApplication {
 			'CheckTx',
 			data
 		);
-		return promise.then((data) => ResponseCheckTx.decode(new Reader(data)));
+		return promise.then((data) =>
+			ResponseCheckTx.decode(new _m0.Reader(data))
+		);
 	}
 
 	Query(request: RequestQuery): Promise<ResponseQuery> {
@@ -5174,7 +5325,9 @@ export class ABCIApplicationClientImpl implements ABCIApplication {
 			'Query',
 			data
 		);
-		return promise.then((data) => ResponseQuery.decode(new Reader(data)));
+		return promise.then((data) =>
+			ResponseQuery.decode(new _m0.Reader(data))
+		);
 	}
 
 	Commit(request: RequestCommit): Promise<ResponseCommit> {
@@ -5184,7 +5337,9 @@ export class ABCIApplicationClientImpl implements ABCIApplication {
 			'Commit',
 			data
 		);
-		return promise.then((data) => ResponseCommit.decode(new Reader(data)));
+		return promise.then((data) =>
+			ResponseCommit.decode(new _m0.Reader(data))
+		);
 	}
 
 	InitChain(request: RequestInitChain): Promise<ResponseInitChain> {
@@ -5195,7 +5350,7 @@ export class ABCIApplicationClientImpl implements ABCIApplication {
 			data
 		);
 		return promise.then((data) =>
-			ResponseInitChain.decode(new Reader(data))
+			ResponseInitChain.decode(new _m0.Reader(data))
 		);
 	}
 
@@ -5207,7 +5362,7 @@ export class ABCIApplicationClientImpl implements ABCIApplication {
 			data
 		);
 		return promise.then((data) =>
-			ResponseBeginBlock.decode(new Reader(data))
+			ResponseBeginBlock.decode(new _m0.Reader(data))
 		);
 	}
 
@@ -5219,7 +5374,7 @@ export class ABCIApplicationClientImpl implements ABCIApplication {
 			data
 		);
 		return promise.then((data) =>
-			ResponseEndBlock.decode(new Reader(data))
+			ResponseEndBlock.decode(new _m0.Reader(data))
 		);
 	}
 
@@ -5233,7 +5388,7 @@ export class ABCIApplicationClientImpl implements ABCIApplication {
 			data
 		);
 		return promise.then((data) =>
-			ResponseListSnapshots.decode(new Reader(data))
+			ResponseListSnapshots.decode(new _m0.Reader(data))
 		);
 	}
 
@@ -5247,7 +5402,7 @@ export class ABCIApplicationClientImpl implements ABCIApplication {
 			data
 		);
 		return promise.then((data) =>
-			ResponseOfferSnapshot.decode(new Reader(data))
+			ResponseOfferSnapshot.decode(new _m0.Reader(data))
 		);
 	}
 
@@ -5261,7 +5416,7 @@ export class ABCIApplicationClientImpl implements ABCIApplication {
 			data
 		);
 		return promise.then((data) =>
-			ResponseLoadSnapshotChunk.decode(new Reader(data))
+			ResponseLoadSnapshotChunk.decode(new _m0.Reader(data))
 		);
 	}
 
@@ -5275,7 +5430,7 @@ export class ABCIApplicationClientImpl implements ABCIApplication {
 			data
 		);
 		return promise.then((data) =>
-			ResponseApplySnapshotChunk.decode(new Reader(data))
+			ResponseApplySnapshotChunk.decode(new _m0.Reader(data))
 		);
 	}
 }
@@ -5377,9 +5532,7 @@ function numberToLong(number: number) {
 	return Long.fromNumber(number);
 }
 
-// If you get a compile-error about 'Constructor<Long> and ... have no overlap',
-// add '--ts_proto_opt=esModuleInterop=true' as a flag when calling 'protoc'.
-if (util.Long !== Long) {
-	util.Long = Long as any;
-	configure();
+if (_m0.util.Long !== Long) {
+	_m0.util.Long = Long as any;
+	_m0.configure();
 }

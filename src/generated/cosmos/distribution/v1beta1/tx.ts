@@ -1,6 +1,6 @@
 /* eslint-disable */
-import { util, configure, Writer, Reader } from 'protobufjs/minimal';
-import * as Long from 'long';
+import Long from 'long';
+import _m0 from 'protobufjs/minimal';
 import { Coin } from '../../../cosmos/base/v1beta1/coin';
 
 export const protobufPackage = 'cosmos.distribution.v1beta1';
@@ -60,8 +60,8 @@ const baseMsgSetWithdrawAddress: object = {
 export const MsgSetWithdrawAddress = {
 	encode(
 		message: MsgSetWithdrawAddress,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.delegatorAddress !== '') {
 			writer.uint32(10).string(message.delegatorAddress);
 		}
@@ -71,8 +71,12 @@ export const MsgSetWithdrawAddress = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): MsgSetWithdrawAddress {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(
+		input: _m0.Reader | Uint8Array,
+		length?: number
+	): MsgSetWithdrawAddress {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = {
 			...baseMsgSetWithdrawAddress,
@@ -137,16 +141,17 @@ const baseMsgSetWithdrawAddressResponse: object = {};
 export const MsgSetWithdrawAddressResponse = {
 	encode(
 		_: MsgSetWithdrawAddressResponse,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		return writer;
 	},
 
 	decode(
-		input: Reader | Uint8Array,
+		input: _m0.Reader | Uint8Array,
 		length?: number
 	): MsgSetWithdrawAddressResponse {
-		const reader = input instanceof Reader ? input : new Reader(input);
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = {
 			...baseMsgSetWithdrawAddressResponse,
@@ -192,8 +197,8 @@ const baseMsgWithdrawDelegatorReward: object = {
 export const MsgWithdrawDelegatorReward = {
 	encode(
 		message: MsgWithdrawDelegatorReward,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.delegatorAddress !== '') {
 			writer.uint32(10).string(message.delegatorAddress);
 		}
@@ -204,10 +209,11 @@ export const MsgWithdrawDelegatorReward = {
 	},
 
 	decode(
-		input: Reader | Uint8Array,
+		input: _m0.Reader | Uint8Array,
 		length?: number
 	): MsgWithdrawDelegatorReward {
-		const reader = input instanceof Reader ? input : new Reader(input);
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = {
 			...baseMsgWithdrawDelegatorReward,
@@ -272,16 +278,17 @@ const baseMsgWithdrawDelegatorRewardResponse: object = {};
 export const MsgWithdrawDelegatorRewardResponse = {
 	encode(
 		_: MsgWithdrawDelegatorRewardResponse,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		return writer;
 	},
 
 	decode(
-		input: Reader | Uint8Array,
+		input: _m0.Reader | Uint8Array,
 		length?: number
 	): MsgWithdrawDelegatorRewardResponse {
-		const reader = input instanceof Reader ? input : new Reader(input);
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = {
 			...baseMsgWithdrawDelegatorRewardResponse,
@@ -324,8 +331,8 @@ const baseMsgWithdrawValidatorCommission: object = { validatorAddress: '' };
 export const MsgWithdrawValidatorCommission = {
 	encode(
 		message: MsgWithdrawValidatorCommission,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.validatorAddress !== '') {
 			writer.uint32(10).string(message.validatorAddress);
 		}
@@ -333,10 +340,11 @@ export const MsgWithdrawValidatorCommission = {
 	},
 
 	decode(
-		input: Reader | Uint8Array,
+		input: _m0.Reader | Uint8Array,
 		length?: number
 	): MsgWithdrawValidatorCommission {
-		const reader = input instanceof Reader ? input : new Reader(input);
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = {
 			...baseMsgWithdrawValidatorCommission,
@@ -390,16 +398,17 @@ const baseMsgWithdrawValidatorCommissionResponse: object = {};
 export const MsgWithdrawValidatorCommissionResponse = {
 	encode(
 		_: MsgWithdrawValidatorCommissionResponse,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		return writer;
 	},
 
 	decode(
-		input: Reader | Uint8Array,
+		input: _m0.Reader | Uint8Array,
 		length?: number
 	): MsgWithdrawValidatorCommissionResponse {
-		const reader = input instanceof Reader ? input : new Reader(input);
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = {
 			...baseMsgWithdrawValidatorCommissionResponse,
@@ -442,8 +451,8 @@ const baseMsgFundCommunityPool: object = { depositor: '' };
 export const MsgFundCommunityPool = {
 	encode(
 		message: MsgFundCommunityPool,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		for (const v of message.amount) {
 			Coin.encode(v!, writer.uint32(10).fork()).ldelim();
 		}
@@ -453,8 +462,12 @@ export const MsgFundCommunityPool = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): MsgFundCommunityPool {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(
+		input: _m0.Reader | Uint8Array,
+		length?: number
+	): MsgFundCommunityPool {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseMsgFundCommunityPool } as MsgFundCommunityPool;
 		message.amount = [];
@@ -515,16 +528,17 @@ const baseMsgFundCommunityPoolResponse: object = {};
 export const MsgFundCommunityPoolResponse = {
 	encode(
 		_: MsgFundCommunityPoolResponse,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		return writer;
 	},
 
 	decode(
-		input: Reader | Uint8Array,
+		input: _m0.Reader | Uint8Array,
 		length?: number
 	): MsgFundCommunityPoolResponse {
-		const reader = input instanceof Reader ? input : new Reader(input);
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = {
 			...baseMsgFundCommunityPoolResponse,
@@ -614,7 +628,7 @@ export class MsgClientImpl implements Msg {
 			data
 		);
 		return promise.then((data) =>
-			MsgSetWithdrawAddressResponse.decode(new Reader(data))
+			MsgSetWithdrawAddressResponse.decode(new _m0.Reader(data))
 		);
 	}
 
@@ -628,7 +642,7 @@ export class MsgClientImpl implements Msg {
 			data
 		);
 		return promise.then((data) =>
-			MsgWithdrawDelegatorRewardResponse.decode(new Reader(data))
+			MsgWithdrawDelegatorRewardResponse.decode(new _m0.Reader(data))
 		);
 	}
 
@@ -642,7 +656,7 @@ export class MsgClientImpl implements Msg {
 			data
 		);
 		return promise.then((data) =>
-			MsgWithdrawValidatorCommissionResponse.decode(new Reader(data))
+			MsgWithdrawValidatorCommissionResponse.decode(new _m0.Reader(data))
 		);
 	}
 
@@ -656,7 +670,7 @@ export class MsgClientImpl implements Msg {
 			data
 		);
 		return promise.then((data) =>
-			MsgFundCommunityPoolResponse.decode(new Reader(data))
+			MsgFundCommunityPoolResponse.decode(new _m0.Reader(data))
 		);
 	}
 }
@@ -698,9 +712,7 @@ export type Exact<P, I extends P> = P extends Builtin
 				never
 			>;
 
-// If you get a compile-error about 'Constructor<Long> and ... have no overlap',
-// add '--ts_proto_opt=esModuleInterop=true' as a flag when calling 'protoc'.
-if (util.Long !== Long) {
-	util.Long = Long as any;
-	configure();
+if (_m0.util.Long !== Long) {
+	_m0.util.Long = Long as any;
+	_m0.configure();
 }

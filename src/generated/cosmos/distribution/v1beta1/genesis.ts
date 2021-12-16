@@ -1,6 +1,6 @@
 /* eslint-disable */
-import { util, configure, Writer, Reader } from 'protobufjs/minimal';
-import * as Long from 'long';
+import Long from 'long';
+import _m0 from 'protobufjs/minimal';
 import {
 	ValidatorAccumulatedCommission,
 	ValidatorHistoricalRewards,
@@ -120,8 +120,8 @@ const baseDelegatorWithdrawInfo: object = {
 export const DelegatorWithdrawInfo = {
 	encode(
 		message: DelegatorWithdrawInfo,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.delegatorAddress !== '') {
 			writer.uint32(10).string(message.delegatorAddress);
 		}
@@ -131,8 +131,12 @@ export const DelegatorWithdrawInfo = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): DelegatorWithdrawInfo {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(
+		input: _m0.Reader | Uint8Array,
+		length?: number
+	): DelegatorWithdrawInfo {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = {
 			...baseDelegatorWithdrawInfo,
@@ -197,8 +201,8 @@ const baseValidatorOutstandingRewardsRecord: object = { validatorAddress: '' };
 export const ValidatorOutstandingRewardsRecord = {
 	encode(
 		message: ValidatorOutstandingRewardsRecord,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.validatorAddress !== '') {
 			writer.uint32(10).string(message.validatorAddress);
 		}
@@ -209,10 +213,11 @@ export const ValidatorOutstandingRewardsRecord = {
 	},
 
 	decode(
-		input: Reader | Uint8Array,
+		input: _m0.Reader | Uint8Array,
 		length?: number
 	): ValidatorOutstandingRewardsRecord {
-		const reader = input instanceof Reader ? input : new Reader(input);
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = {
 			...baseValidatorOutstandingRewardsRecord,
@@ -286,8 +291,8 @@ const baseValidatorAccumulatedCommissionRecord: object = {
 export const ValidatorAccumulatedCommissionRecord = {
 	encode(
 		message: ValidatorAccumulatedCommissionRecord,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.validatorAddress !== '') {
 			writer.uint32(10).string(message.validatorAddress);
 		}
@@ -301,10 +306,11 @@ export const ValidatorAccumulatedCommissionRecord = {
 	},
 
 	decode(
-		input: Reader | Uint8Array,
+		input: _m0.Reader | Uint8Array,
 		length?: number
 	): ValidatorAccumulatedCommissionRecord {
-		const reader = input instanceof Reader ? input : new Reader(input);
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = {
 			...baseValidatorAccumulatedCommissionRecord,
@@ -379,8 +385,8 @@ const baseValidatorHistoricalRewardsRecord: object = {
 export const ValidatorHistoricalRewardsRecord = {
 	encode(
 		message: ValidatorHistoricalRewardsRecord,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.validatorAddress !== '') {
 			writer.uint32(10).string(message.validatorAddress);
 		}
@@ -397,10 +403,11 @@ export const ValidatorHistoricalRewardsRecord = {
 	},
 
 	decode(
-		input: Reader | Uint8Array,
+		input: _m0.Reader | Uint8Array,
 		length?: number
 	): ValidatorHistoricalRewardsRecord {
-		const reader = input instanceof Reader ? input : new Reader(input);
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = {
 			...baseValidatorHistoricalRewardsRecord,
@@ -485,8 +492,8 @@ const baseValidatorCurrentRewardsRecord: object = { validatorAddress: '' };
 export const ValidatorCurrentRewardsRecord = {
 	encode(
 		message: ValidatorCurrentRewardsRecord,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.validatorAddress !== '') {
 			writer.uint32(10).string(message.validatorAddress);
 		}
@@ -500,10 +507,11 @@ export const ValidatorCurrentRewardsRecord = {
 	},
 
 	decode(
-		input: Reader | Uint8Array,
+		input: _m0.Reader | Uint8Array,
 		length?: number
 	): ValidatorCurrentRewardsRecord {
-		const reader = input instanceof Reader ? input : new Reader(input);
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = {
 			...baseValidatorCurrentRewardsRecord,
@@ -578,8 +586,8 @@ const baseDelegatorStartingInfoRecord: object = {
 export const DelegatorStartingInfoRecord = {
 	encode(
 		message: DelegatorStartingInfoRecord,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.delegatorAddress !== '') {
 			writer.uint32(10).string(message.delegatorAddress);
 		}
@@ -596,10 +604,11 @@ export const DelegatorStartingInfoRecord = {
 	},
 
 	decode(
-		input: Reader | Uint8Array,
+		input: _m0.Reader | Uint8Array,
 		length?: number
 	): DelegatorStartingInfoRecord {
-		const reader = input instanceof Reader ? input : new Reader(input);
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = {
 			...baseDelegatorStartingInfoRecord,
@@ -686,8 +695,8 @@ const baseValidatorSlashEventRecord: object = {
 export const ValidatorSlashEventRecord = {
 	encode(
 		message: ValidatorSlashEventRecord,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.validatorAddress !== '') {
 			writer.uint32(10).string(message.validatorAddress);
 		}
@@ -707,10 +716,11 @@ export const ValidatorSlashEventRecord = {
 	},
 
 	decode(
-		input: Reader | Uint8Array,
+		input: _m0.Reader | Uint8Array,
 		length?: number
 	): ValidatorSlashEventRecord {
-		const reader = input instanceof Reader ? input : new Reader(input);
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = {
 			...baseValidatorSlashEventRecord,
@@ -808,7 +818,10 @@ export const ValidatorSlashEventRecord = {
 const baseGenesisState: object = { previousProposer: '' };
 
 export const GenesisState = {
-	encode(message: GenesisState, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: GenesisState,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.params !== undefined) {
 			Params.encode(message.params, writer.uint32(10).fork()).ldelim();
 		}
@@ -860,8 +873,9 @@ export const GenesisState = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): GenesisState {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): GenesisState {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseGenesisState } as GenesisState;
 		message.delegatorWithdrawInfos = [];
@@ -1125,9 +1139,7 @@ export type Exact<P, I extends P> = P extends Builtin
 				never
 			>;
 
-// If you get a compile-error about 'Constructor<Long> and ... have no overlap',
-// add '--ts_proto_opt=esModuleInterop=true' as a flag when calling 'protoc'.
-if (util.Long !== Long) {
-	util.Long = Long as any;
-	configure();
+if (_m0.util.Long !== Long) {
+	_m0.util.Long = Long as any;
+	_m0.configure();
 }

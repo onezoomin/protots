@@ -1,6 +1,6 @@
 /* eslint-disable */
-import { util, configure, Writer, Reader } from 'protobufjs/minimal';
-import * as Long from 'long';
+import Long from 'long';
+import _m0 from 'protobufjs/minimal';
 import { Coin } from '../../../cosmos/base/v1beta1/coin';
 
 export const protobufPackage = 'cosmos.vesting.v1beta1';
@@ -30,8 +30,8 @@ const baseMsgCreateVestingAccount: object = {
 export const MsgCreateVestingAccount = {
 	encode(
 		message: MsgCreateVestingAccount,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.fromAddress !== '') {
 			writer.uint32(10).string(message.fromAddress);
 		}
@@ -51,10 +51,11 @@ export const MsgCreateVestingAccount = {
 	},
 
 	decode(
-		input: Reader | Uint8Array,
+		input: _m0.Reader | Uint8Array,
 		length?: number
 	): MsgCreateVestingAccount {
-		const reader = input instanceof Reader ? input : new Reader(input);
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = {
 			...baseMsgCreateVestingAccount,
@@ -153,16 +154,17 @@ const baseMsgCreateVestingAccountResponse: object = {};
 export const MsgCreateVestingAccountResponse = {
 	encode(
 		_: MsgCreateVestingAccountResponse,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		return writer;
 	},
 
 	decode(
-		input: Reader | Uint8Array,
+		input: _m0.Reader | Uint8Array,
 		length?: number
 	): MsgCreateVestingAccountResponse {
-		const reader = input instanceof Reader ? input : new Reader(input);
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = {
 			...baseMsgCreateVestingAccountResponse,
@@ -227,7 +229,7 @@ export class MsgClientImpl implements Msg {
 			data
 		);
 		return promise.then((data) =>
-			MsgCreateVestingAccountResponse.decode(new Reader(data))
+			MsgCreateVestingAccountResponse.decode(new _m0.Reader(data))
 		);
 	}
 }
@@ -269,9 +271,7 @@ export type Exact<P, I extends P> = P extends Builtin
 				never
 			>;
 
-// If you get a compile-error about 'Constructor<Long> and ... have no overlap',
-// add '--ts_proto_opt=esModuleInterop=true' as a flag when calling 'protoc'.
-if (util.Long !== Long) {
-	util.Long = Long as any;
-	configure();
+if (_m0.util.Long !== Long) {
+	_m0.util.Long = Long as any;
+	_m0.configure();
 }

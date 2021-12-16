@@ -1,6 +1,6 @@
 /* eslint-disable */
-import { util, configure, Writer, Reader } from 'protobufjs/minimal';
-import * as Long from 'long';
+import Long from 'long';
+import _m0 from 'protobufjs/minimal';
 
 export const protobufPackage = 'cosmos.slashing.v1beta1';
 
@@ -15,15 +15,19 @@ export interface MsgUnjailResponse {}
 const baseMsgUnjail: object = { validatorAddr: '' };
 
 export const MsgUnjail = {
-	encode(message: MsgUnjail, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: MsgUnjail,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.validatorAddr !== '') {
 			writer.uint32(10).string(message.validatorAddr);
 		}
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): MsgUnjail {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): MsgUnjail {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseMsgUnjail } as MsgUnjail;
 		while (reader.pos < end) {
@@ -68,12 +72,16 @@ export const MsgUnjail = {
 const baseMsgUnjailResponse: object = {};
 
 export const MsgUnjailResponse = {
-	encode(_: MsgUnjailResponse, writer: Writer = Writer.create()): Writer {
+	encode(
+		_: MsgUnjailResponse,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): MsgUnjailResponse {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): MsgUnjailResponse {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseMsgUnjailResponse } as MsgUnjailResponse;
 		while (reader.pos < end) {
@@ -129,7 +137,7 @@ export class MsgClientImpl implements Msg {
 			data
 		);
 		return promise.then((data) =>
-			MsgUnjailResponse.decode(new Reader(data))
+			MsgUnjailResponse.decode(new _m0.Reader(data))
 		);
 	}
 }
@@ -171,9 +179,7 @@ export type Exact<P, I extends P> = P extends Builtin
 				never
 			>;
 
-// If you get a compile-error about 'Constructor<Long> and ... have no overlap',
-// add '--ts_proto_opt=esModuleInterop=true' as a flag when calling 'protoc'.
-if (util.Long !== Long) {
-	util.Long = Long as any;
-	configure();
+if (_m0.util.Long !== Long) {
+	_m0.util.Long = Long as any;
+	_m0.configure();
 }

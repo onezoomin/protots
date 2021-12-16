@@ -1,6 +1,6 @@
 /* eslint-disable */
-import { util, configure, Writer, Reader } from 'protobufjs/minimal';
-import * as Long from 'long';
+import Long from 'long';
+import _m0 from 'protobufjs/minimal';
 import { Any } from '../../../google/protobuf/any';
 import { Params } from '../../../cosmos/auth/v1beta1/auth';
 
@@ -32,16 +32,20 @@ const baseQueryAccountRequest: object = { address: '' };
 export const QueryAccountRequest = {
 	encode(
 		message: QueryAccountRequest,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.address !== '') {
 			writer.uint32(10).string(message.address);
 		}
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): QueryAccountRequest {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(
+		input: _m0.Reader | Uint8Array,
+		length?: number
+	): QueryAccountRequest {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseQueryAccountRequest } as QueryAccountRequest;
 		while (reader.pos < end) {
@@ -87,16 +91,20 @@ const baseQueryAccountResponse: object = {};
 export const QueryAccountResponse = {
 	encode(
 		message: QueryAccountResponse,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.account !== undefined) {
 			Any.encode(message.account, writer.uint32(10).fork()).ldelim();
 		}
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): QueryAccountResponse {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(
+		input: _m0.Reader | Uint8Array,
+		length?: number
+	): QueryAccountResponse {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseQueryAccountResponse } as QueryAccountResponse;
 		while (reader.pos < end) {
@@ -146,12 +154,19 @@ export const QueryAccountResponse = {
 const baseQueryParamsRequest: object = {};
 
 export const QueryParamsRequest = {
-	encode(_: QueryParamsRequest, writer: Writer = Writer.create()): Writer {
+	encode(
+		_: QueryParamsRequest,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): QueryParamsRequest {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(
+		input: _m0.Reader | Uint8Array,
+		length?: number
+	): QueryParamsRequest {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseQueryParamsRequest } as QueryParamsRequest;
 		while (reader.pos < end) {
@@ -188,16 +203,20 @@ const baseQueryParamsResponse: object = {};
 export const QueryParamsResponse = {
 	encode(
 		message: QueryParamsResponse,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.params !== undefined) {
 			Params.encode(message.params, writer.uint32(10).fork()).ldelim();
 		}
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): QueryParamsResponse {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(
+		input: _m0.Reader | Uint8Array,
+		length?: number
+	): QueryParamsResponse {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseQueryParamsResponse } as QueryParamsResponse;
 		while (reader.pos < end) {
@@ -267,7 +286,7 @@ export class QueryClientImpl implements Query {
 			data
 		);
 		return promise.then((data) =>
-			QueryAccountResponse.decode(new Reader(data))
+			QueryAccountResponse.decode(new _m0.Reader(data))
 		);
 	}
 
@@ -279,7 +298,7 @@ export class QueryClientImpl implements Query {
 			data
 		);
 		return promise.then((data) =>
-			QueryParamsResponse.decode(new Reader(data))
+			QueryParamsResponse.decode(new _m0.Reader(data))
 		);
 	}
 }
@@ -321,9 +340,7 @@ export type Exact<P, I extends P> = P extends Builtin
 				never
 			>;
 
-// If you get a compile-error about 'Constructor<Long> and ... have no overlap',
-// add '--ts_proto_opt=esModuleInterop=true' as a flag when calling 'protoc'.
-if (util.Long !== Long) {
-	util.Long = Long as any;
-	configure();
+if (_m0.util.Long !== Long) {
+	_m0.util.Long = Long as any;
+	_m0.configure();
 }

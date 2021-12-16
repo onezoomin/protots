@@ -1,6 +1,6 @@
 /* eslint-disable */
-import { util, configure, Writer, Reader } from 'protobufjs/minimal';
-import * as Long from 'long';
+import Long from 'long';
+import _m0 from 'protobufjs/minimal';
 import {
 	Params,
 	ValidatorSigningInfo,
@@ -54,7 +54,10 @@ export interface MissedBlock {
 const baseGenesisState: object = {};
 
 export const GenesisState = {
-	encode(message: GenesisState, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: GenesisState,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.params !== undefined) {
 			Params.encode(message.params, writer.uint32(10).fork()).ldelim();
 		}
@@ -67,8 +70,9 @@ export const GenesisState = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): GenesisState {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): GenesisState {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseGenesisState } as GenesisState;
 		message.signingInfos = [];
@@ -156,7 +160,10 @@ export const GenesisState = {
 const baseSigningInfo: object = { address: '' };
 
 export const SigningInfo = {
-	encode(message: SigningInfo, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: SigningInfo,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.address !== '') {
 			writer.uint32(10).string(message.address);
 		}
@@ -169,8 +176,9 @@ export const SigningInfo = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): SigningInfo {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): SigningInfo {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseSigningInfo } as SigningInfo;
 		while (reader.pos < end) {
@@ -236,8 +244,8 @@ const baseValidatorMissedBlocks: object = { address: '' };
 export const ValidatorMissedBlocks = {
 	encode(
 		message: ValidatorMissedBlocks,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.address !== '') {
 			writer.uint32(10).string(message.address);
 		}
@@ -247,8 +255,12 @@ export const ValidatorMissedBlocks = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): ValidatorMissedBlocks {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(
+		input: _m0.Reader | Uint8Array,
+		length?: number
+	): ValidatorMissedBlocks {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = {
 			...baseValidatorMissedBlocks,
@@ -316,7 +328,10 @@ export const ValidatorMissedBlocks = {
 const baseMissedBlock: object = { index: Long.ZERO, missed: false };
 
 export const MissedBlock = {
-	encode(message: MissedBlock, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: MissedBlock,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (!message.index.isZero()) {
 			writer.uint32(8).int64(message.index);
 		}
@@ -326,8 +341,9 @@ export const MissedBlock = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): MissedBlock {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): MissedBlock {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseMissedBlock } as MissedBlock;
 		while (reader.pos < end) {
@@ -410,9 +426,7 @@ export type Exact<P, I extends P> = P extends Builtin
 				never
 			>;
 
-// If you get a compile-error about 'Constructor<Long> and ... have no overlap',
-// add '--ts_proto_opt=esModuleInterop=true' as a flag when calling 'protoc'.
-if (util.Long !== Long) {
-	util.Long = Long as any;
-	configure();
+if (_m0.util.Long !== Long) {
+	_m0.util.Long = Long as any;
+	_m0.configure();
 }

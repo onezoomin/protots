@@ -1,6 +1,6 @@
 /* eslint-disable */
-import { util, configure, Writer, Reader } from 'protobufjs/minimal';
-import * as Long from 'long';
+import Long from 'long';
+import _m0 from 'protobufjs/minimal';
 import { Any } from '../../../google/protobuf/any';
 import {
 	VoteOption,
@@ -51,8 +51,8 @@ const baseMsgSubmitProposal: object = { proposer: '' };
 export const MsgSubmitProposal = {
 	encode(
 		message: MsgSubmitProposal,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.content !== undefined) {
 			Any.encode(message.content, writer.uint32(10).fork()).ldelim();
 		}
@@ -65,8 +65,9 @@ export const MsgSubmitProposal = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): MsgSubmitProposal {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): MsgSubmitProposal {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseMsgSubmitProposal } as MsgSubmitProposal;
 		message.initialDeposit = [];
@@ -145,8 +146,8 @@ const baseMsgSubmitProposalResponse: object = { proposalId: Long.UZERO };
 export const MsgSubmitProposalResponse = {
 	encode(
 		message: MsgSubmitProposalResponse,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (!message.proposalId.isZero()) {
 			writer.uint32(8).uint64(message.proposalId);
 		}
@@ -154,10 +155,11 @@ export const MsgSubmitProposalResponse = {
 	},
 
 	decode(
-		input: Reader | Uint8Array,
+		input: _m0.Reader | Uint8Array,
 		length?: number
 	): MsgSubmitProposalResponse {
-		const reader = input instanceof Reader ? input : new Reader(input);
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = {
 			...baseMsgSubmitProposalResponse,
@@ -211,7 +213,10 @@ export const MsgSubmitProposalResponse = {
 const baseMsgVote: object = { proposalId: Long.UZERO, voter: '', option: 0 };
 
 export const MsgVote = {
-	encode(message: MsgVote, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: MsgVote,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (!message.proposalId.isZero()) {
 			writer.uint32(8).uint64(message.proposalId);
 		}
@@ -224,8 +229,9 @@ export const MsgVote = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): MsgVote {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): MsgVote {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseMsgVote } as MsgVote;
 		while (reader.pos < end) {
@@ -290,12 +296,16 @@ export const MsgVote = {
 const baseMsgVoteResponse: object = {};
 
 export const MsgVoteResponse = {
-	encode(_: MsgVoteResponse, writer: Writer = Writer.create()): Writer {
+	encode(
+		_: MsgVoteResponse,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): MsgVoteResponse {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): MsgVoteResponse {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseMsgVoteResponse } as MsgVoteResponse;
 		while (reader.pos < end) {
@@ -330,7 +340,10 @@ export const MsgVoteResponse = {
 const baseMsgDeposit: object = { proposalId: Long.UZERO, depositor: '' };
 
 export const MsgDeposit = {
-	encode(message: MsgDeposit, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: MsgDeposit,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (!message.proposalId.isZero()) {
 			writer.uint32(8).uint64(message.proposalId);
 		}
@@ -343,8 +356,9 @@ export const MsgDeposit = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): MsgDeposit {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): MsgDeposit {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseMsgDeposit } as MsgDeposit;
 		message.amount = [];
@@ -416,12 +430,19 @@ export const MsgDeposit = {
 const baseMsgDepositResponse: object = {};
 
 export const MsgDepositResponse = {
-	encode(_: MsgDepositResponse, writer: Writer = Writer.create()): Writer {
+	encode(
+		_: MsgDepositResponse,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): MsgDepositResponse {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(
+		input: _m0.Reader | Uint8Array,
+		length?: number
+	): MsgDepositResponse {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseMsgDepositResponse } as MsgDepositResponse;
 		while (reader.pos < end) {
@@ -483,7 +504,7 @@ export class MsgClientImpl implements Msg {
 			data
 		);
 		return promise.then((data) =>
-			MsgSubmitProposalResponse.decode(new Reader(data))
+			MsgSubmitProposalResponse.decode(new _m0.Reader(data))
 		);
 	}
 
@@ -494,7 +515,9 @@ export class MsgClientImpl implements Msg {
 			'Vote',
 			data
 		);
-		return promise.then((data) => MsgVoteResponse.decode(new Reader(data)));
+		return promise.then((data) =>
+			MsgVoteResponse.decode(new _m0.Reader(data))
+		);
 	}
 
 	Deposit(request: MsgDeposit): Promise<MsgDepositResponse> {
@@ -505,7 +528,7 @@ export class MsgClientImpl implements Msg {
 			data
 		);
 		return promise.then((data) =>
-			MsgDepositResponse.decode(new Reader(data))
+			MsgDepositResponse.decode(new _m0.Reader(data))
 		);
 	}
 }
@@ -547,9 +570,7 @@ export type Exact<P, I extends P> = P extends Builtin
 				never
 			>;
 
-// If you get a compile-error about 'Constructor<Long> and ... have no overlap',
-// add '--ts_proto_opt=esModuleInterop=true' as a flag when calling 'protoc'.
-if (util.Long !== Long) {
-	util.Long = Long as any;
-	configure();
+if (_m0.util.Long !== Long) {
+	_m0.util.Long = Long as any;
+	_m0.configure();
 }

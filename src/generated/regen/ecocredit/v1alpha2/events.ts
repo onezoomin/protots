@@ -1444,7 +1444,8 @@ export const EventAllowAskDenom = {
 		message.denom !== undefined && (obj.denom = message.denom);
 		message.displayDenom !== undefined &&
 			(obj.displayDenom = message.displayDenom);
-		message.exponent !== undefined && (obj.exponent = message.exponent);
+		message.exponent !== undefined &&
+			(obj.exponent = Math.round(message.exponent));
 		return obj;
 	},
 

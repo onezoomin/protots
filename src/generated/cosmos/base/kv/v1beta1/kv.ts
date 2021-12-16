@@ -1,6 +1,6 @@
 /* eslint-disable */
-import { util, configure, Writer, Reader } from 'protobufjs/minimal';
-import * as Long from 'long';
+import Long from 'long';
+import _m0 from 'protobufjs/minimal';
 
 export const protobufPackage = 'cosmos.base.kv.v1beta1';
 
@@ -18,15 +18,19 @@ export interface Pair {
 const basePairs: object = {};
 
 export const Pairs = {
-	encode(message: Pairs, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: Pairs,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		for (const v of message.pairs) {
 			Pair.encode(v!, writer.uint32(10).fork()).ldelim();
 		}
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): Pairs {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): Pairs {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...basePairs } as Pairs;
 		message.pairs = [];
@@ -72,7 +76,10 @@ export const Pairs = {
 const basePair: object = {};
 
 export const Pair = {
-	encode(message: Pair, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: Pair,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.key.length !== 0) {
 			writer.uint32(10).bytes(message.key);
 		}
@@ -82,8 +89,9 @@ export const Pair = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): Pair {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): Pair {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...basePair } as Pair;
 		message.key = new Uint8Array();
@@ -202,9 +210,7 @@ export type Exact<P, I extends P> = P extends Builtin
 				never
 			>;
 
-// If you get a compile-error about 'Constructor<Long> and ... have no overlap',
-// add '--ts_proto_opt=esModuleInterop=true' as a flag when calling 'protoc'.
-if (util.Long !== Long) {
-	util.Long = Long as any;
-	configure();
+if (_m0.util.Long !== Long) {
+	_m0.util.Long = Long as any;
+	_m0.configure();
 }

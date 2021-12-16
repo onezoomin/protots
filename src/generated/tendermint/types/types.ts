@@ -1,6 +1,6 @@
 /* eslint-disable */
-import { util, configure, Writer, Reader } from 'protobufjs/minimal';
-import * as Long from 'long';
+import Long from 'long';
+import _m0 from 'protobufjs/minimal';
 import { Proof } from '../../tendermint/crypto/proof';
 import { Consensus } from '../../tendermint/version/types';
 import { ValidatorSet } from '../../tendermint/types/validator';
@@ -226,7 +226,10 @@ export interface TxProof {
 const basePartSetHeader: object = { total: 0 };
 
 export const PartSetHeader = {
-	encode(message: PartSetHeader, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: PartSetHeader,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.total !== 0) {
 			writer.uint32(8).uint32(message.total);
 		}
@@ -236,8 +239,9 @@ export const PartSetHeader = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): PartSetHeader {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): PartSetHeader {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...basePartSetHeader } as PartSetHeader;
 		message.hash = new Uint8Array();
@@ -273,7 +277,7 @@ export const PartSetHeader = {
 
 	toJSON(message: PartSetHeader): unknown {
 		const obj: any = {};
-		message.total !== undefined && (obj.total = message.total);
+		message.total !== undefined && (obj.total = Math.round(message.total));
 		message.hash !== undefined &&
 			(obj.hash = base64FromBytes(
 				message.hash !== undefined ? message.hash : new Uint8Array()
@@ -294,7 +298,10 @@ export const PartSetHeader = {
 const basePart: object = { index: 0 };
 
 export const Part = {
-	encode(message: Part, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: Part,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.index !== 0) {
 			writer.uint32(8).uint32(message.index);
 		}
@@ -307,8 +314,9 @@ export const Part = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): Part {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): Part {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...basePart } as Part;
 		message.bytes = new Uint8Array();
@@ -351,7 +359,7 @@ export const Part = {
 
 	toJSON(message: Part): unknown {
 		const obj: any = {};
-		message.index !== undefined && (obj.index = message.index);
+		message.index !== undefined && (obj.index = Math.round(message.index));
 		message.bytes !== undefined &&
 			(obj.bytes = base64FromBytes(
 				message.bytes !== undefined ? message.bytes : new Uint8Array()
@@ -378,7 +386,10 @@ export const Part = {
 const baseBlockID: object = {};
 
 export const BlockID = {
-	encode(message: BlockID, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: BlockID,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.hash.length !== 0) {
 			writer.uint32(10).bytes(message.hash);
 		}
@@ -391,8 +402,9 @@ export const BlockID = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): BlockID {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): BlockID {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseBlockID } as BlockID;
 		message.hash = new Uint8Array();
@@ -456,7 +468,10 @@ export const BlockID = {
 const baseHeader: object = { chainId: '', height: Long.ZERO };
 
 export const Header = {
-	encode(message: Header, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: Header,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.version !== undefined) {
 			Consensus.encode(
 				message.version,
@@ -511,8 +526,9 @@ export const Header = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): Header {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): Header {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseHeader } as Header;
 		message.lastCommitHash = new Uint8Array();
@@ -752,15 +768,19 @@ export const Header = {
 const baseData: object = {};
 
 export const Data = {
-	encode(message: Data, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: Data,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		for (const v of message.txs) {
 			writer.uint32(10).bytes(v!);
 		}
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): Data {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): Data {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseData } as Data;
 		message.txs = [];
@@ -811,7 +831,10 @@ const baseVote: object = {
 };
 
 export const Vote = {
-	encode(message: Vote, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: Vote,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.type !== 0) {
 			writer.uint32(8).int32(message.type);
 		}
@@ -842,8 +865,9 @@ export const Vote = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): Vote {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): Vote {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseVote } as Vote;
 		message.validatorAddress = new Uint8Array();
@@ -930,7 +954,7 @@ export const Vote = {
 			(obj.type = signedMsgTypeToJSON(message.type));
 		message.height !== undefined &&
 			(obj.height = (message.height || Long.ZERO).toString());
-		message.round !== undefined && (obj.round = message.round);
+		message.round !== undefined && (obj.round = Math.round(message.round));
 		message.blockId !== undefined &&
 			(obj.blockId = message.blockId
 				? BlockID.toJSON(message.blockId)
@@ -944,7 +968,7 @@ export const Vote = {
 					: new Uint8Array()
 			));
 		message.validatorIndex !== undefined &&
-			(obj.validatorIndex = message.validatorIndex);
+			(obj.validatorIndex = Math.round(message.validatorIndex));
 		message.signature !== undefined &&
 			(obj.signature = base64FromBytes(
 				message.signature !== undefined
@@ -977,7 +1001,10 @@ export const Vote = {
 const baseCommit: object = { height: Long.ZERO, round: 0 };
 
 export const Commit = {
-	encode(message: Commit, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: Commit,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (!message.height.isZero()) {
 			writer.uint32(8).int64(message.height);
 		}
@@ -993,8 +1020,9 @@ export const Commit = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): Commit {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): Commit {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseCommit } as Commit;
 		message.signatures = [];
@@ -1047,7 +1075,7 @@ export const Commit = {
 		const obj: any = {};
 		message.height !== undefined &&
 			(obj.height = (message.height || Long.ZERO).toString());
-		message.round !== undefined && (obj.round = message.round);
+		message.round !== undefined && (obj.round = Math.round(message.round));
 		message.blockId !== undefined &&
 			(obj.blockId = message.blockId
 				? BlockID.toJSON(message.blockId)
@@ -1082,7 +1110,10 @@ export const Commit = {
 const baseCommitSig: object = { blockIdFlag: 0 };
 
 export const CommitSig = {
-	encode(message: CommitSig, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: CommitSig,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.blockIdFlag !== 0) {
 			writer.uint32(8).int32(message.blockIdFlag);
 		}
@@ -1101,8 +1132,9 @@ export const CommitSig = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): CommitSig {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): CommitSig {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseCommitSig } as CommitSig;
 		message.validatorAddress = new Uint8Array();
@@ -1195,7 +1227,10 @@ const baseProposal: object = {
 };
 
 export const Proposal = {
-	encode(message: Proposal, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: Proposal,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.type !== 0) {
 			writer.uint32(8).int32(message.type);
 		}
@@ -1223,8 +1258,9 @@ export const Proposal = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): Proposal {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): Proposal {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseProposal } as Proposal;
 		message.signature = new Uint8Array();
@@ -1301,8 +1337,9 @@ export const Proposal = {
 			(obj.type = signedMsgTypeToJSON(message.type));
 		message.height !== undefined &&
 			(obj.height = (message.height || Long.ZERO).toString());
-		message.round !== undefined && (obj.round = message.round);
-		message.polRound !== undefined && (obj.polRound = message.polRound);
+		message.round !== undefined && (obj.round = Math.round(message.round));
+		message.polRound !== undefined &&
+			(obj.polRound = Math.round(message.polRound));
 		message.blockId !== undefined &&
 			(obj.blockId = message.blockId
 				? BlockID.toJSON(message.blockId)
@@ -1342,7 +1379,10 @@ export const Proposal = {
 const baseSignedHeader: object = {};
 
 export const SignedHeader = {
-	encode(message: SignedHeader, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: SignedHeader,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.header !== undefined) {
 			Header.encode(message.header, writer.uint32(10).fork()).ldelim();
 		}
@@ -1352,8 +1392,9 @@ export const SignedHeader = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): SignedHeader {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): SignedHeader {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseSignedHeader } as SignedHeader;
 		while (reader.pos < end) {
@@ -1418,7 +1459,10 @@ export const SignedHeader = {
 const baseLightBlock: object = {};
 
 export const LightBlock = {
-	encode(message: LightBlock, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: LightBlock,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.signedHeader !== undefined) {
 			SignedHeader.encode(
 				message.signedHeader,
@@ -1434,8 +1478,9 @@ export const LightBlock = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): LightBlock {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): LightBlock {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseLightBlock } as LightBlock;
 		while (reader.pos < end) {
@@ -1506,7 +1551,10 @@ export const LightBlock = {
 const baseBlockMeta: object = { blockSize: Long.ZERO, numTxs: Long.ZERO };
 
 export const BlockMeta = {
-	encode(message: BlockMeta, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: BlockMeta,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.blockId !== undefined) {
 			BlockID.encode(message.blockId, writer.uint32(10).fork()).ldelim();
 		}
@@ -1522,8 +1570,9 @@ export const BlockMeta = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): BlockMeta {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): BlockMeta {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseBlockMeta } as BlockMeta;
 		while (reader.pos < end) {
@@ -1614,7 +1663,10 @@ export const BlockMeta = {
 const baseTxProof: object = {};
 
 export const TxProof = {
-	encode(message: TxProof, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: TxProof,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.rootHash.length !== 0) {
 			writer.uint32(10).bytes(message.rootHash);
 		}
@@ -1627,8 +1679,9 @@ export const TxProof = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): TxProof {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): TxProof {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseTxProof } as TxProof;
 		message.rootHash = new Uint8Array();
@@ -1790,9 +1843,7 @@ function numberToLong(number: number) {
 	return Long.fromNumber(number);
 }
 
-// If you get a compile-error about 'Constructor<Long> and ... have no overlap',
-// add '--ts_proto_opt=esModuleInterop=true' as a flag when calling 'protoc'.
-if (util.Long !== Long) {
-	util.Long = Long as any;
-	configure();
+if (_m0.util.Long !== Long) {
+	_m0.util.Long = Long as any;
+	_m0.configure();
 }

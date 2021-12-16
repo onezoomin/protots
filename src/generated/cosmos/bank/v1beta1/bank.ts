@@ -1,6 +1,6 @@
 /* eslint-disable */
-import { util, configure, Writer, Reader } from 'protobufjs/minimal';
-import * as Long from 'long';
+import Long from 'long';
+import _m0 from 'protobufjs/minimal';
 import { Coin } from '../../../cosmos/base/v1beta1/coin';
 
 export const protobufPackage = 'cosmos.bank.v1beta1';
@@ -79,7 +79,10 @@ export interface Metadata {
 const baseParams: object = { defaultSendEnabled: false };
 
 export const Params = {
-	encode(message: Params, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: Params,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		for (const v of message.sendEnabled) {
 			SendEnabled.encode(v!, writer.uint32(10).fork()).ldelim();
 		}
@@ -89,8 +92,9 @@ export const Params = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): Params {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): Params {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseParams } as Params;
 		message.sendEnabled = [];
@@ -152,7 +156,10 @@ export const Params = {
 const baseSendEnabled: object = { denom: '', enabled: false };
 
 export const SendEnabled = {
-	encode(message: SendEnabled, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: SendEnabled,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.denom !== '') {
 			writer.uint32(10).string(message.denom);
 		}
@@ -162,8 +169,9 @@ export const SendEnabled = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): SendEnabled {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): SendEnabled {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseSendEnabled } as SendEnabled;
 		while (reader.pos < end) {
@@ -216,7 +224,10 @@ export const SendEnabled = {
 const baseInput: object = { address: '' };
 
 export const Input = {
-	encode(message: Input, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: Input,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.address !== '') {
 			writer.uint32(10).string(message.address);
 		}
@@ -226,8 +237,9 @@ export const Input = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): Input {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): Input {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseInput } as Input;
 		message.coins = [];
@@ -282,7 +294,10 @@ export const Input = {
 const baseOutput: object = { address: '' };
 
 export const Output = {
-	encode(message: Output, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: Output,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.address !== '') {
 			writer.uint32(10).string(message.address);
 		}
@@ -292,8 +307,9 @@ export const Output = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): Output {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): Output {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseOutput } as Output;
 		message.coins = [];
@@ -348,15 +364,19 @@ export const Output = {
 const baseSupply: object = {};
 
 export const Supply = {
-	encode(message: Supply, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: Supply,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		for (const v of message.total) {
 			Coin.encode(v!, writer.uint32(10).fork()).ldelim();
 		}
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): Supply {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): Supply {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseSupply } as Supply;
 		message.total = [];
@@ -402,7 +422,10 @@ export const Supply = {
 const baseDenomUnit: object = { denom: '', exponent: 0, aliases: '' };
 
 export const DenomUnit = {
-	encode(message: DenomUnit, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: DenomUnit,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.denom !== '') {
 			writer.uint32(10).string(message.denom);
 		}
@@ -415,8 +438,9 @@ export const DenomUnit = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): DenomUnit {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): DenomUnit {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseDenomUnit } as DenomUnit;
 		message.aliases = [];
@@ -457,7 +481,8 @@ export const DenomUnit = {
 	toJSON(message: DenomUnit): unknown {
 		const obj: any = {};
 		message.denom !== undefined && (obj.denom = message.denom);
-		message.exponent !== undefined && (obj.exponent = message.exponent);
+		message.exponent !== undefined &&
+			(obj.exponent = Math.round(message.exponent));
 		if (message.aliases) {
 			obj.aliases = message.aliases.map((e) => e);
 		} else {
@@ -480,7 +505,10 @@ export const DenomUnit = {
 const baseMetadata: object = { description: '', base: '', display: '' };
 
 export const Metadata = {
-	encode(message: Metadata, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: Metadata,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.description !== '') {
 			writer.uint32(10).string(message.description);
 		}
@@ -496,8 +524,9 @@ export const Metadata = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): Metadata {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): Metadata {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseMetadata } as Metadata;
 		message.denomUnits = [];
@@ -604,9 +633,7 @@ export type Exact<P, I extends P> = P extends Builtin
 				never
 			>;
 
-// If you get a compile-error about 'Constructor<Long> and ... have no overlap',
-// add '--ts_proto_opt=esModuleInterop=true' as a flag when calling 'protoc'.
-if (util.Long !== Long) {
-	util.Long = Long as any;
-	configure();
+if (_m0.util.Long !== Long) {
+	_m0.util.Long = Long as any;
+	_m0.configure();
 }

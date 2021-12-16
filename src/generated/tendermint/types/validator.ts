@@ -1,6 +1,6 @@
 /* eslint-disable */
-import { util, configure, Writer, Reader } from 'protobufjs/minimal';
-import * as Long from 'long';
+import Long from 'long';
+import _m0 from 'protobufjs/minimal';
 import { PublicKey } from '../../tendermint/crypto/keys';
 
 export const protobufPackage = 'tendermint.types';
@@ -26,7 +26,10 @@ export interface SimpleValidator {
 const baseValidatorSet: object = { totalVotingPower: Long.ZERO };
 
 export const ValidatorSet = {
-	encode(message: ValidatorSet, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: ValidatorSet,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		for (const v of message.validators) {
 			Validator.encode(v!, writer.uint32(10).fork()).ldelim();
 		}
@@ -42,8 +45,9 @@ export const ValidatorSet = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): ValidatorSet {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): ValidatorSet {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseValidatorSet } as ValidatorSet;
 		message.validators = [];
@@ -134,7 +138,10 @@ const baseValidator: object = {
 };
 
 export const Validator = {
-	encode(message: Validator, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: Validator,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.address.length !== 0) {
 			writer.uint32(10).bytes(message.address);
 		}
@@ -150,8 +157,9 @@ export const Validator = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): Validator {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): Validator {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseValidator } as Validator;
 		message.address = new Uint8Array();
@@ -246,7 +254,10 @@ export const Validator = {
 const baseSimpleValidator: object = { votingPower: Long.ZERO };
 
 export const SimpleValidator = {
-	encode(message: SimpleValidator, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: SimpleValidator,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.pubKey !== undefined) {
 			PublicKey.encode(message.pubKey, writer.uint32(10).fork()).ldelim();
 		}
@@ -256,8 +267,9 @@ export const SimpleValidator = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): SimpleValidator {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): SimpleValidator {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseSimpleValidator } as SimpleValidator;
 		while (reader.pos < end) {
@@ -380,9 +392,7 @@ export type Exact<P, I extends P> = P extends Builtin
 				never
 			>;
 
-// If you get a compile-error about 'Constructor<Long> and ... have no overlap',
-// add '--ts_proto_opt=esModuleInterop=true' as a flag when calling 'protoc'.
-if (util.Long !== Long) {
-	util.Long = Long as any;
-	configure();
+if (_m0.util.Long !== Long) {
+	_m0.util.Long = Long as any;
+	_m0.configure();
 }

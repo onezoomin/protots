@@ -1,6 +1,6 @@
 /* eslint-disable */
-import { util, configure, Writer, Reader } from 'protobufjs/minimal';
-import * as Long from 'long';
+import Long from 'long';
+import _m0 from 'protobufjs/minimal';
 import { DecCoin, Coin } from '../../../cosmos/base/v1beta1/coin';
 
 export const protobufPackage = 'cosmos.distribution.v1beta1';
@@ -134,7 +134,10 @@ const baseParams: object = {
 };
 
 export const Params = {
-	encode(message: Params, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: Params,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.communityTax !== '') {
 			writer.uint32(10).string(message.communityTax);
 		}
@@ -150,8 +153,9 @@ export const Params = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): Params {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): Params {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseParams } as Params;
 		while (reader.pos < end) {
@@ -229,8 +233,8 @@ const baseValidatorHistoricalRewards: object = { referenceCount: 0 };
 export const ValidatorHistoricalRewards = {
 	encode(
 		message: ValidatorHistoricalRewards,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		for (const v of message.cumulativeRewardRatio) {
 			DecCoin.encode(v!, writer.uint32(10).fork()).ldelim();
 		}
@@ -241,10 +245,11 @@ export const ValidatorHistoricalRewards = {
 	},
 
 	decode(
-		input: Reader | Uint8Array,
+		input: _m0.Reader | Uint8Array,
 		length?: number
 	): ValidatorHistoricalRewards {
-		const reader = input instanceof Reader ? input : new Reader(input);
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = {
 			...baseValidatorHistoricalRewards,
@@ -294,7 +299,7 @@ export const ValidatorHistoricalRewards = {
 			obj.cumulativeRewardRatio = [];
 		}
 		message.referenceCount !== undefined &&
-			(obj.referenceCount = message.referenceCount);
+			(obj.referenceCount = Math.round(message.referenceCount));
 		return obj;
 	},
 
@@ -317,8 +322,8 @@ const baseValidatorCurrentRewards: object = { period: Long.UZERO };
 export const ValidatorCurrentRewards = {
 	encode(
 		message: ValidatorCurrentRewards,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		for (const v of message.rewards) {
 			DecCoin.encode(v!, writer.uint32(10).fork()).ldelim();
 		}
@@ -329,10 +334,11 @@ export const ValidatorCurrentRewards = {
 	},
 
 	decode(
-		input: Reader | Uint8Array,
+		input: _m0.Reader | Uint8Array,
 		length?: number
 	): ValidatorCurrentRewards {
-		const reader = input instanceof Reader ? input : new Reader(input);
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = {
 			...baseValidatorCurrentRewards,
@@ -406,8 +412,8 @@ const baseValidatorAccumulatedCommission: object = {};
 export const ValidatorAccumulatedCommission = {
 	encode(
 		message: ValidatorAccumulatedCommission,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		for (const v of message.commission) {
 			DecCoin.encode(v!, writer.uint32(10).fork()).ldelim();
 		}
@@ -415,10 +421,11 @@ export const ValidatorAccumulatedCommission = {
 	},
 
 	decode(
-		input: Reader | Uint8Array,
+		input: _m0.Reader | Uint8Array,
 		length?: number
 	): ValidatorAccumulatedCommission {
-		const reader = input instanceof Reader ? input : new Reader(input);
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = {
 			...baseValidatorAccumulatedCommission,
@@ -479,8 +486,8 @@ const baseValidatorOutstandingRewards: object = {};
 export const ValidatorOutstandingRewards = {
 	encode(
 		message: ValidatorOutstandingRewards,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		for (const v of message.rewards) {
 			DecCoin.encode(v!, writer.uint32(10).fork()).ldelim();
 		}
@@ -488,10 +495,11 @@ export const ValidatorOutstandingRewards = {
 	},
 
 	decode(
-		input: Reader | Uint8Array,
+		input: _m0.Reader | Uint8Array,
 		length?: number
 	): ValidatorOutstandingRewards {
-		const reader = input instanceof Reader ? input : new Reader(input);
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = {
 			...baseValidatorOutstandingRewards,
@@ -555,8 +563,8 @@ const baseValidatorSlashEvent: object = {
 export const ValidatorSlashEvent = {
 	encode(
 		message: ValidatorSlashEvent,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (!message.validatorPeriod.isZero()) {
 			writer.uint32(8).uint64(message.validatorPeriod);
 		}
@@ -566,8 +574,12 @@ export const ValidatorSlashEvent = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): ValidatorSlashEvent {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(
+		input: _m0.Reader | Uint8Array,
+		length?: number
+	): ValidatorSlashEvent {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseValidatorSlashEvent } as ValidatorSlashEvent;
 		while (reader.pos < end) {
@@ -630,16 +642,20 @@ const baseValidatorSlashEvents: object = {};
 export const ValidatorSlashEvents = {
 	encode(
 		message: ValidatorSlashEvents,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		for (const v of message.validatorSlashEvents) {
 			ValidatorSlashEvent.encode(v!, writer.uint32(10).fork()).ldelim();
 		}
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): ValidatorSlashEvents {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(
+		input: _m0.Reader | Uint8Array,
+		length?: number
+	): ValidatorSlashEvents {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseValidatorSlashEvents } as ValidatorSlashEvents;
 		message.validatorSlashEvents = [];
@@ -694,15 +710,19 @@ export const ValidatorSlashEvents = {
 const baseFeePool: object = {};
 
 export const FeePool = {
-	encode(message: FeePool, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: FeePool,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		for (const v of message.communityPool) {
 			DecCoin.encode(v!, writer.uint32(10).fork()).ldelim();
 		}
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): FeePool {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): FeePool {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseFeePool } as FeePool;
 		message.communityPool = [];
@@ -759,8 +779,8 @@ const baseCommunityPoolSpendProposal: object = {
 export const CommunityPoolSpendProposal = {
 	encode(
 		message: CommunityPoolSpendProposal,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.title !== '') {
 			writer.uint32(10).string(message.title);
 		}
@@ -777,10 +797,11 @@ export const CommunityPoolSpendProposal = {
 	},
 
 	decode(
-		input: Reader | Uint8Array,
+		input: _m0.Reader | Uint8Array,
 		length?: number
 	): CommunityPoolSpendProposal {
-		const reader = input instanceof Reader ? input : new Reader(input);
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = {
 			...baseCommunityPoolSpendProposal,
@@ -870,8 +891,8 @@ const baseDelegatorStartingInfo: object = {
 export const DelegatorStartingInfo = {
 	encode(
 		message: DelegatorStartingInfo,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (!message.previousPeriod.isZero()) {
 			writer.uint32(8).uint64(message.previousPeriod);
 		}
@@ -884,8 +905,12 @@ export const DelegatorStartingInfo = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): DelegatorStartingInfo {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(
+		input: _m0.Reader | Uint8Array,
+		length?: number
+	): DelegatorStartingInfo {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = {
 			...baseDelegatorStartingInfo,
@@ -967,8 +992,8 @@ const baseDelegationDelegatorReward: object = { validatorAddress: '' };
 export const DelegationDelegatorReward = {
 	encode(
 		message: DelegationDelegatorReward,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.validatorAddress !== '') {
 			writer.uint32(10).string(message.validatorAddress);
 		}
@@ -979,10 +1004,11 @@ export const DelegationDelegatorReward = {
 	},
 
 	decode(
-		input: Reader | Uint8Array,
+		input: _m0.Reader | Uint8Array,
 		length?: number
 	): DelegationDelegatorReward {
-		const reader = input instanceof Reader ? input : new Reader(input);
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = {
 			...baseDelegationDelegatorReward,
@@ -1060,8 +1086,8 @@ const baseCommunityPoolSpendProposalWithDeposit: object = {
 export const CommunityPoolSpendProposalWithDeposit = {
 	encode(
 		message: CommunityPoolSpendProposalWithDeposit,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.title !== '') {
 			writer.uint32(10).string(message.title);
 		}
@@ -1081,10 +1107,11 @@ export const CommunityPoolSpendProposalWithDeposit = {
 	},
 
 	decode(
-		input: Reader | Uint8Array,
+		input: _m0.Reader | Uint8Array,
 		length?: number
 	): CommunityPoolSpendProposalWithDeposit {
-		const reader = input instanceof Reader ? input : new Reader(input);
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = {
 			...baseCommunityPoolSpendProposalWithDeposit,
@@ -1197,9 +1224,7 @@ export type Exact<P, I extends P> = P extends Builtin
 				never
 			>;
 
-// If you get a compile-error about 'Constructor<Long> and ... have no overlap',
-// add '--ts_proto_opt=esModuleInterop=true' as a flag when calling 'protoc'.
-if (util.Long !== Long) {
-	util.Long = Long as any;
-	configure();
+if (_m0.util.Long !== Long) {
+	_m0.util.Long = Long as any;
+	_m0.configure();
 }

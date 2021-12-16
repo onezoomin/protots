@@ -11,9 +11,11 @@
     "@oclif/core": "^1",
     "@oclif/plugin-help": "^5",
     "@oclif/plugin-plugins": "^2.0.1",
+    "@types/recursive-readdir": "^2.2.0",
     "change-case": "^4.1.2",
-    "long": "^5.2.0",
-    "protobufjs": "^6.11.2"
+    "lodash": "^4.17.21",
+    "protobufjs": "^6.11.2",
+    "recursive-readdir": "^2.2.2"
   },
   "devDependencies": {
     "@oclif/test": "^2",

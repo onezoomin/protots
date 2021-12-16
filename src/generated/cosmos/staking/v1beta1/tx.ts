@@ -1,6 +1,6 @@
 /* eslint-disable */
-import { util, configure, Writer, Reader } from 'protobufjs/minimal';
-import * as Long from 'long';
+import Long from 'long';
+import _m0 from 'protobufjs/minimal';
 import {
 	Description,
 	CommissionRates,
@@ -95,8 +95,8 @@ const baseMsgCreateValidator: object = {
 export const MsgCreateValidator = {
 	encode(
 		message: MsgCreateValidator,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.description !== undefined) {
 			Description.encode(
 				message.description,
@@ -127,8 +127,12 @@ export const MsgCreateValidator = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): MsgCreateValidator {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(
+		input: _m0.Reader | Uint8Array,
+		length?: number
+	): MsgCreateValidator {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseMsgCreateValidator } as MsgCreateValidator;
 		while (reader.pos < end) {
@@ -264,16 +268,17 @@ const baseMsgCreateValidatorResponse: object = {};
 export const MsgCreateValidatorResponse = {
 	encode(
 		_: MsgCreateValidatorResponse,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		return writer;
 	},
 
 	decode(
-		input: Reader | Uint8Array,
+		input: _m0.Reader | Uint8Array,
 		length?: number
 	): MsgCreateValidatorResponse {
-		const reader = input instanceof Reader ? input : new Reader(input);
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = {
 			...baseMsgCreateValidatorResponse,
@@ -320,8 +325,8 @@ const baseMsgEditValidator: object = {
 export const MsgEditValidator = {
 	encode(
 		message: MsgEditValidator,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.description !== undefined) {
 			Description.encode(
 				message.description,
@@ -340,8 +345,9 @@ export const MsgEditValidator = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): MsgEditValidator {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): MsgEditValidator {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseMsgEditValidator } as MsgEditValidator;
 		while (reader.pos < end) {
@@ -429,16 +435,17 @@ const baseMsgEditValidatorResponse: object = {};
 export const MsgEditValidatorResponse = {
 	encode(
 		_: MsgEditValidatorResponse,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		return writer;
 	},
 
 	decode(
-		input: Reader | Uint8Array,
+		input: _m0.Reader | Uint8Array,
 		length?: number
 	): MsgEditValidatorResponse {
-		const reader = input instanceof Reader ? input : new Reader(input);
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = {
 			...baseMsgEditValidatorResponse,
@@ -479,7 +486,10 @@ export const MsgEditValidatorResponse = {
 const baseMsgDelegate: object = { delegatorAddress: '', validatorAddress: '' };
 
 export const MsgDelegate = {
-	encode(message: MsgDelegate, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: MsgDelegate,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.delegatorAddress !== '') {
 			writer.uint32(10).string(message.delegatorAddress);
 		}
@@ -492,8 +502,9 @@ export const MsgDelegate = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): MsgDelegate {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): MsgDelegate {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseMsgDelegate } as MsgDelegate;
 		while (reader.pos < end) {
@@ -565,12 +576,19 @@ export const MsgDelegate = {
 const baseMsgDelegateResponse: object = {};
 
 export const MsgDelegateResponse = {
-	encode(_: MsgDelegateResponse, writer: Writer = Writer.create()): Writer {
+	encode(
+		_: MsgDelegateResponse,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): MsgDelegateResponse {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(
+		input: _m0.Reader | Uint8Array,
+		length?: number
+	): MsgDelegateResponse {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseMsgDelegateResponse } as MsgDelegateResponse;
 		while (reader.pos < end) {
@@ -611,8 +629,8 @@ const baseMsgBeginRedelegate: object = {
 export const MsgBeginRedelegate = {
 	encode(
 		message: MsgBeginRedelegate,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.delegatorAddress !== '') {
 			writer.uint32(10).string(message.delegatorAddress);
 		}
@@ -628,8 +646,12 @@ export const MsgBeginRedelegate = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): MsgBeginRedelegate {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(
+		input: _m0.Reader | Uint8Array,
+		length?: number
+	): MsgBeginRedelegate {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseMsgBeginRedelegate } as MsgBeginRedelegate;
 		while (reader.pos < end) {
@@ -714,8 +736,8 @@ const baseMsgBeginRedelegateResponse: object = {};
 export const MsgBeginRedelegateResponse = {
 	encode(
 		message: MsgBeginRedelegateResponse,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.completionTime !== undefined) {
 			Timestamp.encode(
 				toTimestamp(message.completionTime),
@@ -726,10 +748,11 @@ export const MsgBeginRedelegateResponse = {
 	},
 
 	decode(
-		input: Reader | Uint8Array,
+		input: _m0.Reader | Uint8Array,
 		length?: number
 	): MsgBeginRedelegateResponse {
-		const reader = input instanceof Reader ? input : new Reader(input);
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = {
 			...baseMsgBeginRedelegateResponse,
@@ -786,7 +809,10 @@ const baseMsgUndelegate: object = {
 };
 
 export const MsgUndelegate = {
-	encode(message: MsgUndelegate, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: MsgUndelegate,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.delegatorAddress !== '') {
 			writer.uint32(10).string(message.delegatorAddress);
 		}
@@ -799,8 +825,9 @@ export const MsgUndelegate = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): MsgUndelegate {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): MsgUndelegate {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseMsgUndelegate } as MsgUndelegate;
 		while (reader.pos < end) {
@@ -874,8 +901,8 @@ const baseMsgUndelegateResponse: object = {};
 export const MsgUndelegateResponse = {
 	encode(
 		message: MsgUndelegateResponse,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.completionTime !== undefined) {
 			Timestamp.encode(
 				toTimestamp(message.completionTime),
@@ -885,8 +912,12 @@ export const MsgUndelegateResponse = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): MsgUndelegateResponse {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(
+		input: _m0.Reader | Uint8Array,
+		length?: number
+	): MsgUndelegateResponse {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = {
 			...baseMsgUndelegateResponse,
@@ -984,7 +1015,7 @@ export class MsgClientImpl implements Msg {
 			data
 		);
 		return promise.then((data) =>
-			MsgCreateValidatorResponse.decode(new Reader(data))
+			MsgCreateValidatorResponse.decode(new _m0.Reader(data))
 		);
 	}
 
@@ -998,7 +1029,7 @@ export class MsgClientImpl implements Msg {
 			data
 		);
 		return promise.then((data) =>
-			MsgEditValidatorResponse.decode(new Reader(data))
+			MsgEditValidatorResponse.decode(new _m0.Reader(data))
 		);
 	}
 
@@ -1010,7 +1041,7 @@ export class MsgClientImpl implements Msg {
 			data
 		);
 		return promise.then((data) =>
-			MsgDelegateResponse.decode(new Reader(data))
+			MsgDelegateResponse.decode(new _m0.Reader(data))
 		);
 	}
 
@@ -1024,7 +1055,7 @@ export class MsgClientImpl implements Msg {
 			data
 		);
 		return promise.then((data) =>
-			MsgBeginRedelegateResponse.decode(new Reader(data))
+			MsgBeginRedelegateResponse.decode(new _m0.Reader(data))
 		);
 	}
 
@@ -1036,7 +1067,7 @@ export class MsgClientImpl implements Msg {
 			data
 		);
 		return promise.then((data) =>
-			MsgUndelegateResponse.decode(new Reader(data))
+			MsgUndelegateResponse.decode(new _m0.Reader(data))
 		);
 	}
 }
@@ -1104,9 +1135,7 @@ function numberToLong(number: number) {
 	return Long.fromNumber(number);
 }
 
-// If you get a compile-error about 'Constructor<Long> and ... have no overlap',
-// add '--ts_proto_opt=esModuleInterop=true' as a flag when calling 'protoc'.
-if (util.Long !== Long) {
-	util.Long = Long as any;
-	configure();
+if (_m0.util.Long !== Long) {
+	_m0.util.Long = Long as any;
+	_m0.configure();
 }

@@ -1,6 +1,6 @@
 /* eslint-disable */
-import { util, configure, Writer, Reader } from 'protobufjs/minimal';
-import * as Long from 'long';
+import Long from 'long';
+import _m0 from 'protobufjs/minimal';
 import { CapabilityOwners } from '../../../cosmos/capability/v1beta1/capability';
 
 export const protobufPackage = 'cosmos.capability.v1beta1';
@@ -27,7 +27,10 @@ export interface GenesisState {
 const baseGenesisOwners: object = { index: Long.UZERO };
 
 export const GenesisOwners = {
-	encode(message: GenesisOwners, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: GenesisOwners,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (!message.index.isZero()) {
 			writer.uint32(8).uint64(message.index);
 		}
@@ -40,8 +43,9 @@ export const GenesisOwners = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): GenesisOwners {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): GenesisOwners {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseGenesisOwners } as GenesisOwners;
 		while (reader.pos < end) {
@@ -107,7 +111,10 @@ export const GenesisOwners = {
 const baseGenesisState: object = { index: Long.UZERO };
 
 export const GenesisState = {
-	encode(message: GenesisState, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: GenesisState,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (!message.index.isZero()) {
 			writer.uint32(8).uint64(message.index);
 		}
@@ -117,8 +124,9 @@ export const GenesisState = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): GenesisState {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): GenesisState {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseGenesisState } as GenesisState;
 		message.owners = [];
@@ -210,9 +218,7 @@ export type Exact<P, I extends P> = P extends Builtin
 				never
 			>;
 
-// If you get a compile-error about 'Constructor<Long> and ... have no overlap',
-// add '--ts_proto_opt=esModuleInterop=true' as a flag when calling 'protoc'.
-if (util.Long !== Long) {
-	util.Long = Long as any;
-	configure();
+if (_m0.util.Long !== Long) {
+	_m0.util.Long = Long as any;
+	_m0.configure();
 }

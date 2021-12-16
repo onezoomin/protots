@@ -1,6 +1,6 @@
 /* eslint-disable */
-import { util, configure, Writer, Reader } from 'protobufjs/minimal';
-import * as Long from 'long';
+import Long from 'long';
+import _m0 from 'protobufjs/minimal';
 import {
 	PageRequest,
 	PageResponse,
@@ -157,8 +157,8 @@ const baseGetTxsEventRequest: object = { events: '' };
 export const GetTxsEventRequest = {
 	encode(
 		message: GetTxsEventRequest,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		for (const v of message.events) {
 			writer.uint32(10).string(v!);
 		}
@@ -171,8 +171,12 @@ export const GetTxsEventRequest = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): GetTxsEventRequest {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(
+		input: _m0.Reader | Uint8Array,
+		length?: number
+	): GetTxsEventRequest {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseGetTxsEventRequest } as GetTxsEventRequest;
 		message.events = [];
@@ -238,8 +242,8 @@ const baseGetTxsEventResponse: object = {};
 export const GetTxsEventResponse = {
 	encode(
 		message: GetTxsEventResponse,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		for (const v of message.txs) {
 			Tx.encode(v!, writer.uint32(10).fork()).ldelim();
 		}
@@ -255,8 +259,12 @@ export const GetTxsEventResponse = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): GetTxsEventResponse {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(
+		input: _m0.Reader | Uint8Array,
+		length?: number
+	): GetTxsEventResponse {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseGetTxsEventResponse } as GetTxsEventResponse;
 		message.txs = [];
@@ -340,8 +348,8 @@ const baseBroadcastTxRequest: object = { mode: 0 };
 export const BroadcastTxRequest = {
 	encode(
 		message: BroadcastTxRequest,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.txBytes.length !== 0) {
 			writer.uint32(10).bytes(message.txBytes);
 		}
@@ -351,8 +359,12 @@ export const BroadcastTxRequest = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): BroadcastTxRequest {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(
+		input: _m0.Reader | Uint8Array,
+		length?: number
+	): BroadcastTxRequest {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseBroadcastTxRequest } as BroadcastTxRequest;
 		message.txBytes = new Uint8Array();
@@ -414,8 +426,8 @@ const baseBroadcastTxResponse: object = {};
 export const BroadcastTxResponse = {
 	encode(
 		message: BroadcastTxResponse,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.txResponse !== undefined) {
 			TxResponse.encode(
 				message.txResponse,
@@ -425,8 +437,12 @@ export const BroadcastTxResponse = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): BroadcastTxResponse {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(
+		input: _m0.Reader | Uint8Array,
+		length?: number
+	): BroadcastTxResponse {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseBroadcastTxResponse } as BroadcastTxResponse;
 		while (reader.pos < end) {
@@ -479,15 +495,19 @@ export const BroadcastTxResponse = {
 const baseSimulateRequest: object = {};
 
 export const SimulateRequest = {
-	encode(message: SimulateRequest, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: SimulateRequest,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.tx !== undefined) {
 			Tx.encode(message.tx, writer.uint32(10).fork()).ldelim();
 		}
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): SimulateRequest {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): SimulateRequest {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseSimulateRequest } as SimulateRequest;
 		while (reader.pos < end) {
@@ -537,8 +557,8 @@ const baseSimulateResponse: object = {};
 export const SimulateResponse = {
 	encode(
 		message: SimulateResponse,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.gasInfo !== undefined) {
 			GasInfo.encode(message.gasInfo, writer.uint32(10).fork()).ldelim();
 		}
@@ -548,8 +568,9 @@ export const SimulateResponse = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): SimulateResponse {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): SimulateResponse {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseSimulateResponse } as SimulateResponse;
 		while (reader.pos < end) {
@@ -614,15 +635,19 @@ export const SimulateResponse = {
 const baseGetTxRequest: object = { hash: '' };
 
 export const GetTxRequest = {
-	encode(message: GetTxRequest, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: GetTxRequest,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.hash !== '') {
 			writer.uint32(10).string(message.hash);
 		}
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): GetTxRequest {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): GetTxRequest {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseGetTxRequest } as GetTxRequest;
 		while (reader.pos < end) {
@@ -666,7 +691,10 @@ export const GetTxRequest = {
 const baseGetTxResponse: object = {};
 
 export const GetTxResponse = {
-	encode(message: GetTxResponse, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: GetTxResponse,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.tx !== undefined) {
 			Tx.encode(message.tx, writer.uint32(10).fork()).ldelim();
 		}
@@ -679,8 +707,9 @@ export const GetTxResponse = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): GetTxResponse {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): GetTxResponse {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseGetTxResponse } as GetTxResponse;
 		while (reader.pos < end) {
@@ -772,7 +801,7 @@ export class ServiceClientImpl implements Service {
 			data
 		);
 		return promise.then((data) =>
-			SimulateResponse.decode(new Reader(data))
+			SimulateResponse.decode(new _m0.Reader(data))
 		);
 	}
 
@@ -783,7 +812,9 @@ export class ServiceClientImpl implements Service {
 			'GetTx',
 			data
 		);
-		return promise.then((data) => GetTxResponse.decode(new Reader(data)));
+		return promise.then((data) =>
+			GetTxResponse.decode(new _m0.Reader(data))
+		);
 	}
 
 	BroadcastTx(request: BroadcastTxRequest): Promise<BroadcastTxResponse> {
@@ -794,7 +825,7 @@ export class ServiceClientImpl implements Service {
 			data
 		);
 		return promise.then((data) =>
-			BroadcastTxResponse.decode(new Reader(data))
+			BroadcastTxResponse.decode(new _m0.Reader(data))
 		);
 	}
 
@@ -806,7 +837,7 @@ export class ServiceClientImpl implements Service {
 			data
 		);
 		return promise.then((data) =>
-			GetTxsEventResponse.decode(new Reader(data))
+			GetTxsEventResponse.decode(new _m0.Reader(data))
 		);
 	}
 }
@@ -882,9 +913,7 @@ export type Exact<P, I extends P> = P extends Builtin
 				never
 			>;
 
-// If you get a compile-error about 'Constructor<Long> and ... have no overlap',
-// add '--ts_proto_opt=esModuleInterop=true' as a flag when calling 'protoc'.
-if (util.Long !== Long) {
-	util.Long = Long as any;
-	configure();
+if (_m0.util.Long !== Long) {
+	_m0.util.Long = Long as any;
+	_m0.configure();
 }

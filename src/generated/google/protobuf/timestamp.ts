@@ -168,7 +168,7 @@ export const Timestamp = {
 		const obj: any = {};
 		message.seconds !== undefined &&
 			(obj.seconds = (message.seconds || Long.ZERO).toString());
-		message.nanos !== undefined && (obj.nanos = message.nanos);
+		message.nanos !== undefined && (obj.nanos = Math.round(message.nanos));
 		return obj;
 	},
 

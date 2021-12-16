@@ -1406,12 +1406,16 @@ export const FileDescriptorProto = {
 			obj.dependency = [];
 		}
 		if (message.publicDependency) {
-			obj.publicDependency = message.publicDependency.map((e) => e);
+			obj.publicDependency = message.publicDependency.map((e) =>
+				Math.round(e)
+			);
 		} else {
 			obj.publicDependency = [];
 		}
 		if (message.weakDependency) {
-			obj.weakDependency = message.weakDependency.map((e) => e);
+			obj.weakDependency = message.weakDependency.map((e) =>
+				Math.round(e)
+			);
 		} else {
 			obj.weakDependency = [];
 		}
@@ -1828,8 +1832,8 @@ export const DescriptorProto_ExtensionRange = {
 
 	toJSON(message: DescriptorProto_ExtensionRange): unknown {
 		const obj: any = {};
-		message.start !== undefined && (obj.start = message.start);
-		message.end !== undefined && (obj.end = message.end);
+		message.start !== undefined && (obj.start = Math.round(message.start));
+		message.end !== undefined && (obj.end = Math.round(message.end));
 		message.options !== undefined &&
 			(obj.options = message.options
 				? ExtensionRangeOptions.toJSON(message.options)
@@ -1913,8 +1917,8 @@ export const DescriptorProto_ReservedRange = {
 
 	toJSON(message: DescriptorProto_ReservedRange): unknown {
 		const obj: any = {};
-		message.start !== undefined && (obj.start = message.start);
-		message.end !== undefined && (obj.end = message.end);
+		message.start !== undefined && (obj.start = Math.round(message.start));
+		message.end !== undefined && (obj.end = Math.round(message.end));
 		return obj;
 	},
 
@@ -2171,7 +2175,8 @@ export const FieldDescriptorProto = {
 	toJSON(message: FieldDescriptorProto): unknown {
 		const obj: any = {};
 		message.name !== undefined && (obj.name = message.name);
-		message.number !== undefined && (obj.number = message.number);
+		message.number !== undefined &&
+			(obj.number = Math.round(message.number));
 		message.label !== undefined &&
 			(obj.label = fieldDescriptorProto_LabelToJSON(message.label));
 		message.type !== undefined &&
@@ -2181,7 +2186,7 @@ export const FieldDescriptorProto = {
 		message.defaultValue !== undefined &&
 			(obj.defaultValue = message.defaultValue);
 		message.oneofIndex !== undefined &&
-			(obj.oneofIndex = message.oneofIndex);
+			(obj.oneofIndex = Math.round(message.oneofIndex));
 		message.jsonName !== undefined && (obj.jsonName = message.jsonName);
 		message.options !== undefined &&
 			(obj.options = message.options
@@ -2510,8 +2515,8 @@ export const EnumDescriptorProto_EnumReservedRange = {
 
 	toJSON(message: EnumDescriptorProto_EnumReservedRange): unknown {
 		const obj: any = {};
-		message.start !== undefined && (obj.start = message.start);
-		message.end !== undefined && (obj.end = message.end);
+		message.start !== undefined && (obj.start = Math.round(message.start));
+		message.end !== undefined && (obj.end = Math.round(message.end));
 		return obj;
 	},
 
@@ -2604,7 +2609,8 @@ export const EnumValueDescriptorProto = {
 	toJSON(message: EnumValueDescriptorProto): unknown {
 		const obj: any = {};
 		message.name !== undefined && (obj.name = message.name);
-		message.number !== undefined && (obj.number = message.number);
+		message.number !== undefined &&
+			(obj.number = Math.round(message.number));
 		message.options !== undefined &&
 			(obj.options = message.options
 				? EnumValueOptions.toJSON(message.options)
@@ -4389,12 +4395,12 @@ export const SourceCodeInfo_Location = {
 	toJSON(message: SourceCodeInfo_Location): unknown {
 		const obj: any = {};
 		if (message.path) {
-			obj.path = message.path.map((e) => e);
+			obj.path = message.path.map((e) => Math.round(e));
 		} else {
 			obj.path = [];
 		}
 		if (message.span) {
-			obj.span = message.span.map((e) => e);
+			obj.span = message.span.map((e) => Math.round(e));
 		} else {
 			obj.span = [];
 		}
@@ -4594,14 +4600,14 @@ export const GeneratedCodeInfo_Annotation = {
 	toJSON(message: GeneratedCodeInfo_Annotation): unknown {
 		const obj: any = {};
 		if (message.path) {
-			obj.path = message.path.map((e) => e);
+			obj.path = message.path.map((e) => Math.round(e));
 		} else {
 			obj.path = [];
 		}
 		message.sourceFile !== undefined &&
 			(obj.sourceFile = message.sourceFile);
-		message.begin !== undefined && (obj.begin = message.begin);
-		message.end !== undefined && (obj.end = message.end);
+		message.begin !== undefined && (obj.begin = Math.round(message.begin));
+		message.end !== undefined && (obj.end = Math.round(message.end));
 		return obj;
 	},
 

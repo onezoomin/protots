@@ -1,6 +1,6 @@
 /* eslint-disable */
-import { util, configure, Writer, Reader } from 'protobufjs/minimal';
-import * as Long from 'long';
+import Long from 'long';
+import _m0 from 'protobufjs/minimal';
 import {
 	PageRequest,
 	PageResponse,
@@ -112,8 +112,8 @@ const baseGetValidatorSetByHeightRequest: object = { height: Long.ZERO };
 export const GetValidatorSetByHeightRequest = {
 	encode(
 		message: GetValidatorSetByHeightRequest,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (!message.height.isZero()) {
 			writer.uint32(8).int64(message.height);
 		}
@@ -127,10 +127,11 @@ export const GetValidatorSetByHeightRequest = {
 	},
 
 	decode(
-		input: Reader | Uint8Array,
+		input: _m0.Reader | Uint8Array,
 		length?: number
 	): GetValidatorSetByHeightRequest {
-		const reader = input instanceof Reader ? input : new Reader(input);
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = {
 			...baseGetValidatorSetByHeightRequest,
@@ -204,8 +205,8 @@ const baseGetValidatorSetByHeightResponse: object = { blockHeight: Long.ZERO };
 export const GetValidatorSetByHeightResponse = {
 	encode(
 		message: GetValidatorSetByHeightResponse,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (!message.blockHeight.isZero()) {
 			writer.uint32(8).int64(message.blockHeight);
 		}
@@ -222,10 +223,11 @@ export const GetValidatorSetByHeightResponse = {
 	},
 
 	decode(
-		input: Reader | Uint8Array,
+		input: _m0.Reader | Uint8Array,
 		length?: number
 	): GetValidatorSetByHeightResponse {
-		const reader = input instanceof Reader ? input : new Reader(input);
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = {
 			...baseGetValidatorSetByHeightResponse,
@@ -317,8 +319,8 @@ const baseGetLatestValidatorSetRequest: object = {};
 export const GetLatestValidatorSetRequest = {
 	encode(
 		message: GetLatestValidatorSetRequest,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.pagination !== undefined) {
 			PageRequest.encode(
 				message.pagination,
@@ -329,10 +331,11 @@ export const GetLatestValidatorSetRequest = {
 	},
 
 	decode(
-		input: Reader | Uint8Array,
+		input: _m0.Reader | Uint8Array,
 		length?: number
 	): GetLatestValidatorSetRequest {
-		const reader = input instanceof Reader ? input : new Reader(input);
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = {
 			...baseGetLatestValidatorSetRequest,
@@ -393,8 +396,8 @@ const baseGetLatestValidatorSetResponse: object = { blockHeight: Long.ZERO };
 export const GetLatestValidatorSetResponse = {
 	encode(
 		message: GetLatestValidatorSetResponse,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (!message.blockHeight.isZero()) {
 			writer.uint32(8).int64(message.blockHeight);
 		}
@@ -411,10 +414,11 @@ export const GetLatestValidatorSetResponse = {
 	},
 
 	decode(
-		input: Reader | Uint8Array,
+		input: _m0.Reader | Uint8Array,
 		length?: number
 	): GetLatestValidatorSetResponse {
-		const reader = input instanceof Reader ? input : new Reader(input);
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = {
 			...baseGetLatestValidatorSetResponse,
@@ -508,7 +512,10 @@ const baseValidator: object = {
 };
 
 export const Validator = {
-	encode(message: Validator, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: Validator,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.address !== '') {
 			writer.uint32(10).string(message.address);
 		}
@@ -524,8 +531,9 @@ export const Validator = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): Validator {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): Validator {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseValidator } as Validator;
 		while (reader.pos < end) {
@@ -616,8 +624,8 @@ const baseGetBlockByHeightRequest: object = { height: Long.ZERO };
 export const GetBlockByHeightRequest = {
 	encode(
 		message: GetBlockByHeightRequest,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (!message.height.isZero()) {
 			writer.uint32(8).int64(message.height);
 		}
@@ -625,10 +633,11 @@ export const GetBlockByHeightRequest = {
 	},
 
 	decode(
-		input: Reader | Uint8Array,
+		input: _m0.Reader | Uint8Array,
 		length?: number
 	): GetBlockByHeightRequest {
-		const reader = input instanceof Reader ? input : new Reader(input);
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = {
 			...baseGetBlockByHeightRequest,
@@ -684,8 +693,8 @@ const baseGetBlockByHeightResponse: object = {};
 export const GetBlockByHeightResponse = {
 	encode(
 		message: GetBlockByHeightResponse,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.blockId !== undefined) {
 			BlockID.encode(message.blockId, writer.uint32(10).fork()).ldelim();
 		}
@@ -696,10 +705,11 @@ export const GetBlockByHeightResponse = {
 	},
 
 	decode(
-		input: Reader | Uint8Array,
+		input: _m0.Reader | Uint8Array,
 		length?: number
 	): GetBlockByHeightResponse {
-		const reader = input instanceof Reader ? input : new Reader(input);
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = {
 			...baseGetBlockByHeightResponse,
@@ -770,12 +780,19 @@ export const GetBlockByHeightResponse = {
 const baseGetLatestBlockRequest: object = {};
 
 export const GetLatestBlockRequest = {
-	encode(_: GetLatestBlockRequest, writer: Writer = Writer.create()): Writer {
+	encode(
+		_: GetLatestBlockRequest,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): GetLatestBlockRequest {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(
+		input: _m0.Reader | Uint8Array,
+		length?: number
+	): GetLatestBlockRequest {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = {
 			...baseGetLatestBlockRequest,
@@ -818,8 +835,8 @@ const baseGetLatestBlockResponse: object = {};
 export const GetLatestBlockResponse = {
 	encode(
 		message: GetLatestBlockResponse,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.blockId !== undefined) {
 			BlockID.encode(message.blockId, writer.uint32(10).fork()).ldelim();
 		}
@@ -830,10 +847,11 @@ export const GetLatestBlockResponse = {
 	},
 
 	decode(
-		input: Reader | Uint8Array,
+		input: _m0.Reader | Uint8Array,
 		length?: number
 	): GetLatestBlockResponse {
-		const reader = input instanceof Reader ? input : new Reader(input);
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = {
 			...baseGetLatestBlockResponse,
@@ -904,12 +922,16 @@ export const GetLatestBlockResponse = {
 const baseGetSyncingRequest: object = {};
 
 export const GetSyncingRequest = {
-	encode(_: GetSyncingRequest, writer: Writer = Writer.create()): Writer {
+	encode(
+		_: GetSyncingRequest,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): GetSyncingRequest {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): GetSyncingRequest {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseGetSyncingRequest } as GetSyncingRequest;
 		while (reader.pos < end) {
@@ -946,16 +968,20 @@ const baseGetSyncingResponse: object = { syncing: false };
 export const GetSyncingResponse = {
 	encode(
 		message: GetSyncingResponse,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.syncing === true) {
 			writer.uint32(8).bool(message.syncing);
 		}
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): GetSyncingResponse {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(
+		input: _m0.Reader | Uint8Array,
+		length?: number
+	): GetSyncingResponse {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseGetSyncingResponse } as GetSyncingResponse;
 		while (reader.pos < end) {
@@ -999,12 +1025,19 @@ export const GetSyncingResponse = {
 const baseGetNodeInfoRequest: object = {};
 
 export const GetNodeInfoRequest = {
-	encode(_: GetNodeInfoRequest, writer: Writer = Writer.create()): Writer {
+	encode(
+		_: GetNodeInfoRequest,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): GetNodeInfoRequest {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(
+		input: _m0.Reader | Uint8Array,
+		length?: number
+	): GetNodeInfoRequest {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseGetNodeInfoRequest } as GetNodeInfoRequest;
 		while (reader.pos < end) {
@@ -1041,8 +1074,8 @@ const baseGetNodeInfoResponse: object = {};
 export const GetNodeInfoResponse = {
 	encode(
 		message: GetNodeInfoResponse,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.defaultNodeInfo !== undefined) {
 			DefaultNodeInfo.encode(
 				message.defaultNodeInfo,
@@ -1058,8 +1091,12 @@ export const GetNodeInfoResponse = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): GetNodeInfoResponse {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(
+		input: _m0.Reader | Uint8Array,
+		length?: number
+	): GetNodeInfoResponse {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseGetNodeInfoResponse } as GetNodeInfoResponse;
 		while (reader.pos < end) {
@@ -1141,7 +1178,10 @@ const baseVersionInfo: object = {
 };
 
 export const VersionInfo = {
-	encode(message: VersionInfo, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: VersionInfo,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.name !== '') {
 			writer.uint32(10).string(message.name);
 		}
@@ -1166,8 +1206,9 @@ export const VersionInfo = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): VersionInfo {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): VersionInfo {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseVersionInfo } as VersionInfo;
 		message.buildDeps = [];
@@ -1274,7 +1315,10 @@ export const VersionInfo = {
 const baseModule: object = { path: '', version: '', sum: '' };
 
 export const Module = {
-	encode(message: Module, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: Module,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.path !== '') {
 			writer.uint32(10).string(message.path);
 		}
@@ -1287,8 +1331,9 @@ export const Module = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): Module {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): Module {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseModule } as Module;
 		while (reader.pos < end) {
@@ -1388,7 +1433,7 @@ export class ServiceClientImpl implements Service {
 			data
 		);
 		return promise.then((data) =>
-			GetNodeInfoResponse.decode(new Reader(data))
+			GetNodeInfoResponse.decode(new _m0.Reader(data))
 		);
 	}
 
@@ -1400,7 +1445,7 @@ export class ServiceClientImpl implements Service {
 			data
 		);
 		return promise.then((data) =>
-			GetSyncingResponse.decode(new Reader(data))
+			GetSyncingResponse.decode(new _m0.Reader(data))
 		);
 	}
 
@@ -1414,7 +1459,7 @@ export class ServiceClientImpl implements Service {
 			data
 		);
 		return promise.then((data) =>
-			GetLatestBlockResponse.decode(new Reader(data))
+			GetLatestBlockResponse.decode(new _m0.Reader(data))
 		);
 	}
 
@@ -1428,7 +1473,7 @@ export class ServiceClientImpl implements Service {
 			data
 		);
 		return promise.then((data) =>
-			GetBlockByHeightResponse.decode(new Reader(data))
+			GetBlockByHeightResponse.decode(new _m0.Reader(data))
 		);
 	}
 
@@ -1442,7 +1487,7 @@ export class ServiceClientImpl implements Service {
 			data
 		);
 		return promise.then((data) =>
-			GetLatestValidatorSetResponse.decode(new Reader(data))
+			GetLatestValidatorSetResponse.decode(new _m0.Reader(data))
 		);
 	}
 
@@ -1456,7 +1501,7 @@ export class ServiceClientImpl implements Service {
 			data
 		);
 		return promise.then((data) =>
-			GetValidatorSetByHeightResponse.decode(new Reader(data))
+			GetValidatorSetByHeightResponse.decode(new _m0.Reader(data))
 		);
 	}
 }
@@ -1498,9 +1543,7 @@ export type Exact<P, I extends P> = P extends Builtin
 				never
 			>;
 
-// If you get a compile-error about 'Constructor<Long> and ... have no overlap',
-// add '--ts_proto_opt=esModuleInterop=true' as a flag when calling 'protoc'.
-if (util.Long !== Long) {
-	util.Long = Long as any;
-	configure();
+if (_m0.util.Long !== Long) {
+	_m0.util.Long = Long as any;
+	_m0.configure();
 }

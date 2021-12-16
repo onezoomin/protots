@@ -1,6 +1,6 @@
 /* eslint-disable */
-import { util, configure, Writer, Reader } from 'protobufjs/minimal';
-import * as Long from 'long';
+import Long from 'long';
+import _m0 from 'protobufjs/minimal';
 
 export const protobufPackage = 'tendermint.crypto';
 
@@ -43,7 +43,10 @@ export interface ProofOps {
 const baseProof: object = { total: Long.ZERO, index: Long.ZERO };
 
 export const Proof = {
-	encode(message: Proof, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: Proof,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (!message.total.isZero()) {
 			writer.uint32(8).int64(message.total);
 		}
@@ -59,8 +62,9 @@ export const Proof = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): Proof {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): Proof {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseProof } as Proof;
 		message.aunts = [];
@@ -149,7 +153,10 @@ export const Proof = {
 const baseValueOp: object = {};
 
 export const ValueOp = {
-	encode(message: ValueOp, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: ValueOp,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.key.length !== 0) {
 			writer.uint32(10).bytes(message.key);
 		}
@@ -159,8 +166,9 @@ export const ValueOp = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): ValueOp {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): ValueOp {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseValueOp } as ValueOp;
 		message.key = new Uint8Array();
@@ -221,7 +229,10 @@ export const ValueOp = {
 const baseDominoOp: object = { key: '', input: '', output: '' };
 
 export const DominoOp = {
-	encode(message: DominoOp, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: DominoOp,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.key !== '') {
 			writer.uint32(10).string(message.key);
 		}
@@ -234,8 +245,9 @@ export const DominoOp = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): DominoOp {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): DominoOp {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseDominoOp } as DominoOp;
 		while (reader.pos < end) {
@@ -297,7 +309,10 @@ export const DominoOp = {
 const baseProofOp: object = { type: '' };
 
 export const ProofOp = {
-	encode(message: ProofOp, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: ProofOp,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.type !== '') {
 			writer.uint32(10).string(message.type);
 		}
@@ -310,8 +325,9 @@ export const ProofOp = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): ProofOp {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): ProofOp {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseProofOp } as ProofOp;
 		message.key = new Uint8Array();
@@ -379,15 +395,19 @@ export const ProofOp = {
 const baseProofOps: object = {};
 
 export const ProofOps = {
-	encode(message: ProofOps, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: ProofOps,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		for (const v of message.ops) {
 			ProofOp.encode(v!, writer.uint32(10).fork()).ldelim();
 		}
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): ProofOps {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): ProofOps {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseProofOps } as ProofOps;
 		message.ops = [];
@@ -495,9 +515,7 @@ export type Exact<P, I extends P> = P extends Builtin
 				never
 			>;
 
-// If you get a compile-error about 'Constructor<Long> and ... have no overlap',
-// add '--ts_proto_opt=esModuleInterop=true' as a flag when calling 'protoc'.
-if (util.Long !== Long) {
-	util.Long = Long as any;
-	configure();
+if (_m0.util.Long !== Long) {
+	_m0.util.Long = Long as any;
+	_m0.configure();
 }

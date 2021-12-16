@@ -921,7 +921,8 @@ export const CreditType = {
 		message.abbreviation !== undefined &&
 			(obj.abbreviation = message.abbreviation);
 		message.unit !== undefined && (obj.unit = message.unit);
-		message.precision !== undefined && (obj.precision = message.precision);
+		message.precision !== undefined &&
+			(obj.precision = Math.round(message.precision));
 		return obj;
 	},
 
@@ -1434,7 +1435,8 @@ export const AskDenom = {
 		message.denom !== undefined && (obj.denom = message.denom);
 		message.displayDenom !== undefined &&
 			(obj.displayDenom = message.displayDenom);
-		message.exponent !== undefined && (obj.exponent = message.exponent);
+		message.exponent !== undefined &&
+			(obj.exponent = Math.round(message.exponent));
 		return obj;
 	},
 

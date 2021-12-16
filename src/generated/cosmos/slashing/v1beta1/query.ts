@@ -1,6 +1,6 @@
 /* eslint-disable */
-import { util, configure, Writer, Reader } from 'protobufjs/minimal';
-import * as Long from 'long';
+import Long from 'long';
+import _m0 from 'protobufjs/minimal';
 import {
 	Params,
 	ValidatorSigningInfo,
@@ -59,12 +59,19 @@ export interface QuerySigningInfosResponse {
 const baseQueryParamsRequest: object = {};
 
 export const QueryParamsRequest = {
-	encode(_: QueryParamsRequest, writer: Writer = Writer.create()): Writer {
+	encode(
+		_: QueryParamsRequest,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): QueryParamsRequest {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(
+		input: _m0.Reader | Uint8Array,
+		length?: number
+	): QueryParamsRequest {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseQueryParamsRequest } as QueryParamsRequest;
 		while (reader.pos < end) {
@@ -101,16 +108,20 @@ const baseQueryParamsResponse: object = {};
 export const QueryParamsResponse = {
 	encode(
 		message: QueryParamsResponse,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.params !== undefined) {
 			Params.encode(message.params, writer.uint32(10).fork()).ldelim();
 		}
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): QueryParamsResponse {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(
+		input: _m0.Reader | Uint8Array,
+		length?: number
+	): QueryParamsResponse {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseQueryParamsResponse } as QueryParamsResponse;
 		while (reader.pos < end) {
@@ -162,8 +173,8 @@ const baseQuerySigningInfoRequest: object = { consAddress: '' };
 export const QuerySigningInfoRequest = {
 	encode(
 		message: QuerySigningInfoRequest,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.consAddress !== '') {
 			writer.uint32(10).string(message.consAddress);
 		}
@@ -171,10 +182,11 @@ export const QuerySigningInfoRequest = {
 	},
 
 	decode(
-		input: Reader | Uint8Array,
+		input: _m0.Reader | Uint8Array,
 		length?: number
 	): QuerySigningInfoRequest {
-		const reader = input instanceof Reader ? input : new Reader(input);
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = {
 			...baseQuerySigningInfoRequest,
@@ -227,8 +239,8 @@ const baseQuerySigningInfoResponse: object = {};
 export const QuerySigningInfoResponse = {
 	encode(
 		message: QuerySigningInfoResponse,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.valSigningInfo !== undefined) {
 			ValidatorSigningInfo.encode(
 				message.valSigningInfo,
@@ -239,10 +251,11 @@ export const QuerySigningInfoResponse = {
 	},
 
 	decode(
-		input: Reader | Uint8Array,
+		input: _m0.Reader | Uint8Array,
 		length?: number
 	): QuerySigningInfoResponse {
-		const reader = input instanceof Reader ? input : new Reader(input);
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = {
 			...baseQuerySigningInfoResponse,
@@ -305,8 +318,8 @@ const baseQuerySigningInfosRequest: object = {};
 export const QuerySigningInfosRequest = {
 	encode(
 		message: QuerySigningInfosRequest,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.pagination !== undefined) {
 			PageRequest.encode(
 				message.pagination,
@@ -317,10 +330,11 @@ export const QuerySigningInfosRequest = {
 	},
 
 	decode(
-		input: Reader | Uint8Array,
+		input: _m0.Reader | Uint8Array,
 		length?: number
 	): QuerySigningInfosRequest {
-		const reader = input instanceof Reader ? input : new Reader(input);
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = {
 			...baseQuerySigningInfosRequest,
@@ -381,8 +395,8 @@ const baseQuerySigningInfosResponse: object = {};
 export const QuerySigningInfosResponse = {
 	encode(
 		message: QuerySigningInfosResponse,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		for (const v of message.info) {
 			ValidatorSigningInfo.encode(v!, writer.uint32(10).fork()).ldelim();
 		}
@@ -396,10 +410,11 @@ export const QuerySigningInfosResponse = {
 	},
 
 	decode(
-		input: Reader | Uint8Array,
+		input: _m0.Reader | Uint8Array,
 		length?: number
 	): QuerySigningInfosResponse {
-		const reader = input instanceof Reader ? input : new Reader(input);
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = {
 			...baseQuerySigningInfosResponse,
@@ -503,7 +518,7 @@ export class QueryClientImpl implements Query {
 			data
 		);
 		return promise.then((data) =>
-			QueryParamsResponse.decode(new Reader(data))
+			QueryParamsResponse.decode(new _m0.Reader(data))
 		);
 	}
 
@@ -517,7 +532,7 @@ export class QueryClientImpl implements Query {
 			data
 		);
 		return promise.then((data) =>
-			QuerySigningInfoResponse.decode(new Reader(data))
+			QuerySigningInfoResponse.decode(new _m0.Reader(data))
 		);
 	}
 
@@ -531,7 +546,7 @@ export class QueryClientImpl implements Query {
 			data
 		);
 		return promise.then((data) =>
-			QuerySigningInfosResponse.decode(new Reader(data))
+			QuerySigningInfosResponse.decode(new _m0.Reader(data))
 		);
 	}
 }
@@ -573,9 +588,7 @@ export type Exact<P, I extends P> = P extends Builtin
 				never
 			>;
 
-// If you get a compile-error about 'Constructor<Long> and ... have no overlap',
-// add '--ts_proto_opt=esModuleInterop=true' as a flag when calling 'protoc'.
-if (util.Long !== Long) {
-	util.Long = Long as any;
-	configure();
+if (_m0.util.Long !== Long) {
+	_m0.util.Long = Long as any;
+	_m0.configure();
 }

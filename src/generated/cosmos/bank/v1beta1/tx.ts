@@ -1,6 +1,6 @@
 /* eslint-disable */
-import { util, configure, Writer, Reader } from 'protobufjs/minimal';
-import * as Long from 'long';
+import Long from 'long';
+import _m0 from 'protobufjs/minimal';
 import { Coin } from '../../../cosmos/base/v1beta1/coin';
 import { Input, Output } from '../../../cosmos/bank/v1beta1/bank';
 
@@ -28,7 +28,10 @@ export interface MsgMultiSendResponse {}
 const baseMsgSend: object = { fromAddress: '', toAddress: '' };
 
 export const MsgSend = {
-	encode(message: MsgSend, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: MsgSend,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.fromAddress !== '') {
 			writer.uint32(10).string(message.fromAddress);
 		}
@@ -41,8 +44,9 @@ export const MsgSend = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): MsgSend {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): MsgSend {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseMsgSend } as MsgSend;
 		message.amount = [];
@@ -109,12 +113,16 @@ export const MsgSend = {
 const baseMsgSendResponse: object = {};
 
 export const MsgSendResponse = {
-	encode(_: MsgSendResponse, writer: Writer = Writer.create()): Writer {
+	encode(
+		_: MsgSendResponse,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): MsgSendResponse {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): MsgSendResponse {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseMsgSendResponse } as MsgSendResponse;
 		while (reader.pos < end) {
@@ -149,7 +157,10 @@ export const MsgSendResponse = {
 const baseMsgMultiSend: object = {};
 
 export const MsgMultiSend = {
-	encode(message: MsgMultiSend, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: MsgMultiSend,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		for (const v of message.inputs) {
 			Input.encode(v!, writer.uint32(10).fork()).ldelim();
 		}
@@ -159,8 +170,9 @@ export const MsgMultiSend = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): MsgMultiSend {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): MsgMultiSend {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseMsgMultiSend } as MsgMultiSend;
 		message.inputs = [];
@@ -228,12 +240,19 @@ export const MsgMultiSend = {
 const baseMsgMultiSendResponse: object = {};
 
 export const MsgMultiSendResponse = {
-	encode(_: MsgMultiSendResponse, writer: Writer = Writer.create()): Writer {
+	encode(
+		_: MsgMultiSendResponse,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): MsgMultiSendResponse {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(
+		input: _m0.Reader | Uint8Array,
+		length?: number
+	): MsgMultiSendResponse {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseMsgMultiSendResponse } as MsgMultiSendResponse;
 		while (reader.pos < end) {
@@ -287,7 +306,9 @@ export class MsgClientImpl implements Msg {
 			'Send',
 			data
 		);
-		return promise.then((data) => MsgSendResponse.decode(new Reader(data)));
+		return promise.then((data) =>
+			MsgSendResponse.decode(new _m0.Reader(data))
+		);
 	}
 
 	MultiSend(request: MsgMultiSend): Promise<MsgMultiSendResponse> {
@@ -298,7 +319,7 @@ export class MsgClientImpl implements Msg {
 			data
 		);
 		return promise.then((data) =>
-			MsgMultiSendResponse.decode(new Reader(data))
+			MsgMultiSendResponse.decode(new _m0.Reader(data))
 		);
 	}
 }
@@ -340,9 +361,7 @@ export type Exact<P, I extends P> = P extends Builtin
 				never
 			>;
 
-// If you get a compile-error about 'Constructor<Long> and ... have no overlap',
-// add '--ts_proto_opt=esModuleInterop=true' as a flag when calling 'protoc'.
-if (util.Long !== Long) {
-	util.Long = Long as any;
-	configure();
+if (_m0.util.Long !== Long) {
+	_m0.util.Long = Long as any;
+	_m0.configure();
 }

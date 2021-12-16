@@ -1,6 +1,6 @@
 /* eslint-disable */
-import { util, configure, Writer, Reader } from 'protobufjs/minimal';
-import * as Long from 'long';
+import Long from 'long';
+import _m0 from 'protobufjs/minimal';
 
 export const protobufPackage = 'cosmos.base.store.v1beta1';
 
@@ -26,7 +26,10 @@ export interface SnapshotIAVLItem {
 const baseSnapshotItem: object = {};
 
 export const SnapshotItem = {
-	encode(message: SnapshotItem, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: SnapshotItem,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.store !== undefined) {
 			SnapshotStoreItem.encode(
 				message.store,
@@ -42,8 +45,9 @@ export const SnapshotItem = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): SnapshotItem {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): SnapshotItem {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseSnapshotItem } as SnapshotItem;
 		while (reader.pos < end) {
@@ -116,16 +120,17 @@ const baseSnapshotStoreItem: object = { name: '' };
 export const SnapshotStoreItem = {
 	encode(
 		message: SnapshotStoreItem,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.name !== '') {
 			writer.uint32(10).string(message.name);
 		}
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): SnapshotStoreItem {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): SnapshotStoreItem {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseSnapshotStoreItem } as SnapshotStoreItem;
 		while (reader.pos < end) {
@@ -171,8 +176,8 @@ const baseSnapshotIAVLItem: object = { version: Long.ZERO, height: 0 };
 export const SnapshotIAVLItem = {
 	encode(
 		message: SnapshotIAVLItem,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.key.length !== 0) {
 			writer.uint32(10).bytes(message.key);
 		}
@@ -188,8 +193,9 @@ export const SnapshotIAVLItem = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): SnapshotIAVLItem {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): SnapshotIAVLItem {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseSnapshotIAVLItem } as SnapshotIAVLItem;
 		message.key = new Uint8Array();
@@ -250,7 +256,8 @@ export const SnapshotIAVLItem = {
 			));
 		message.version !== undefined &&
 			(obj.version = (message.version || Long.ZERO).toString());
-		message.height !== undefined && (obj.height = message.height);
+		message.height !== undefined &&
+			(obj.height = Math.round(message.height));
 		return obj;
 	},
 
@@ -332,9 +339,7 @@ export type Exact<P, I extends P> = P extends Builtin
 				never
 			>;
 
-// If you get a compile-error about 'Constructor<Long> and ... have no overlap',
-// add '--ts_proto_opt=esModuleInterop=true' as a flag when calling 'protoc'.
-if (util.Long !== Long) {
-	util.Long = Long as any;
-	configure();
+if (_m0.util.Long !== Long) {
+	_m0.util.Long = Long as any;
+	_m0.configure();
 }

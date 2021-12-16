@@ -1,6 +1,6 @@
 /* eslint-disable */
-import { util, configure, Writer, Reader } from 'protobufjs/minimal';
-import * as Long from 'long';
+import Long from 'long';
+import _m0 from 'protobufjs/minimal';
 import { Duration } from '../../google/protobuf/duration';
 
 export const protobufPackage = 'tendermint.types';
@@ -88,7 +88,10 @@ export interface HashedParams {
 const baseConsensusParams: object = {};
 
 export const ConsensusParams = {
-	encode(message: ConsensusParams, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: ConsensusParams,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.block !== undefined) {
 			BlockParams.encode(
 				message.block,
@@ -116,8 +119,9 @@ export const ConsensusParams = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): ConsensusParams {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): ConsensusParams {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseConsensusParams } as ConsensusParams;
 		while (reader.pos < end) {
@@ -225,7 +229,10 @@ const baseBlockParams: object = {
 };
 
 export const BlockParams = {
-	encode(message: BlockParams, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: BlockParams,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (!message.maxBytes.isZero()) {
 			writer.uint32(8).int64(message.maxBytes);
 		}
@@ -238,8 +245,9 @@ export const BlockParams = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): BlockParams {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): BlockParams {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseBlockParams } as BlockParams;
 		while (reader.pos < end) {
@@ -316,7 +324,10 @@ const baseEvidenceParams: object = {
 };
 
 export const EvidenceParams = {
-	encode(message: EvidenceParams, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: EvidenceParams,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (!message.maxAgeNumBlocks.isZero()) {
 			writer.uint32(8).int64(message.maxAgeNumBlocks);
 		}
@@ -332,8 +343,9 @@ export const EvidenceParams = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): EvidenceParams {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): EvidenceParams {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseEvidenceParams } as EvidenceParams;
 		while (reader.pos < end) {
@@ -418,15 +430,19 @@ export const EvidenceParams = {
 const baseValidatorParams: object = { pubKeyTypes: '' };
 
 export const ValidatorParams = {
-	encode(message: ValidatorParams, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: ValidatorParams,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		for (const v of message.pubKeyTypes) {
 			writer.uint32(10).string(v!);
 		}
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): ValidatorParams {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): ValidatorParams {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseValidatorParams } as ValidatorParams;
 		message.pubKeyTypes = [];
@@ -474,15 +490,19 @@ export const ValidatorParams = {
 const baseVersionParams: object = { appVersion: Long.UZERO };
 
 export const VersionParams = {
-	encode(message: VersionParams, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: VersionParams,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (!message.appVersion.isZero()) {
 			writer.uint32(8).uint64(message.appVersion);
 		}
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): VersionParams {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): VersionParams {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseVersionParams } as VersionParams;
 		while (reader.pos < end) {
@@ -533,7 +553,10 @@ const baseHashedParams: object = {
 };
 
 export const HashedParams = {
-	encode(message: HashedParams, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: HashedParams,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (!message.blockMaxBytes.isZero()) {
 			writer.uint32(8).int64(message.blockMaxBytes);
 		}
@@ -543,8 +566,9 @@ export const HashedParams = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): HashedParams {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): HashedParams {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseHashedParams } as HashedParams;
 		while (reader.pos < end) {
@@ -633,9 +657,7 @@ export type Exact<P, I extends P> = P extends Builtin
 				never
 			>;
 
-// If you get a compile-error about 'Constructor<Long> and ... have no overlap',
-// add '--ts_proto_opt=esModuleInterop=true' as a flag when calling 'protoc'.
-if (util.Long !== Long) {
-	util.Long = Long as any;
-	configure();
+if (_m0.util.Long !== Long) {
+	_m0.util.Long = Long as any;
+	_m0.configure();
 }

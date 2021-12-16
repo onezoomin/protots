@@ -179,7 +179,7 @@ export const Recipient = {
 	toJSON(message: Recipient): unknown {
 		const obj: any = {};
 		message.address !== undefined && (obj.address = message.address);
-		message.share !== undefined && (obj.share = message.share);
+		message.share !== undefined && (obj.share = Math.round(message.share));
 		message.name !== undefined && (obj.name = message.name);
 		return obj;
 	},
@@ -457,7 +457,7 @@ export const StoreRecipient = {
 					? message.address
 					: new Uint8Array()
 			));
-		message.share !== undefined && (obj.share = message.share);
+		message.share !== undefined && (obj.share = Math.round(message.share));
 		message.name !== undefined && (obj.name = message.name);
 		return obj;
 	},

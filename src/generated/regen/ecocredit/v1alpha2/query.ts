@@ -3294,7 +3294,8 @@ export const Basket = {
 		message.name !== undefined && (obj.name = message.name);
 		message.displayName !== undefined &&
 			(obj.displayName = message.displayName);
-		message.exponent !== undefined && (obj.exponent = message.exponent);
+		message.exponent !== undefined &&
+			(obj.exponent = Math.round(message.exponent));
 		if (message.basketCriteria) {
 			obj.basketCriteria = message.basketCriteria.map((e) =>
 				e ? BasketCriteria.toJSON(e) : undefined

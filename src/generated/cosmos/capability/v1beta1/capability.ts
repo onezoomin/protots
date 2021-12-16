@@ -1,6 +1,6 @@
 /* eslint-disable */
-import { util, configure, Writer, Reader } from 'protobufjs/minimal';
-import * as Long from 'long';
+import Long from 'long';
+import _m0 from 'protobufjs/minimal';
 
 export const protobufPackage = 'cosmos.capability.v1beta1';
 
@@ -32,15 +32,19 @@ export interface CapabilityOwners {
 const baseCapability: object = { index: Long.UZERO };
 
 export const Capability = {
-	encode(message: Capability, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: Capability,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (!message.index.isZero()) {
 			writer.uint32(8).uint64(message.index);
 		}
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): Capability {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): Capability {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseCapability } as Capability;
 		while (reader.pos < end) {
@@ -88,7 +92,10 @@ export const Capability = {
 const baseOwner: object = { module: '', name: '' };
 
 export const Owner = {
-	encode(message: Owner, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: Owner,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.module !== '') {
 			writer.uint32(10).string(message.module);
 		}
@@ -98,8 +105,9 @@ export const Owner = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): Owner {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): Owner {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseOwner } as Owner;
 		while (reader.pos < end) {
@@ -152,16 +160,17 @@ const baseCapabilityOwners: object = {};
 export const CapabilityOwners = {
 	encode(
 		message: CapabilityOwners,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		for (const v of message.owners) {
 			Owner.encode(v!, writer.uint32(10).fork()).ldelim();
 		}
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): CapabilityOwners {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): CapabilityOwners {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseCapabilityOwners } as CapabilityOwners;
 		message.owners = [];
@@ -237,9 +246,7 @@ export type Exact<P, I extends P> = P extends Builtin
 				never
 			>;
 
-// If you get a compile-error about 'Constructor<Long> and ... have no overlap',
-// add '--ts_proto_opt=esModuleInterop=true' as a flag when calling 'protoc'.
-if (util.Long !== Long) {
-	util.Long = Long as any;
-	configure();
+if (_m0.util.Long !== Long) {
+	_m0.util.Long = Long as any;
+	_m0.configure();
 }

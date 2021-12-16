@@ -1,6 +1,6 @@
 /* eslint-disable */
-import { util, configure, Writer, Reader } from 'protobufjs/minimal';
-import * as Long from 'long';
+import Long from 'long';
+import _m0 from 'protobufjs/minimal';
 
 export const protobufPackage = 'tendermint.p2p';
 
@@ -35,7 +35,10 @@ export interface DefaultNodeInfoOther {
 const baseNetAddress: object = { id: '', ip: '', port: 0 };
 
 export const NetAddress = {
-	encode(message: NetAddress, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: NetAddress,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.id !== '') {
 			writer.uint32(10).string(message.id);
 		}
@@ -48,8 +51,9 @@ export const NetAddress = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): NetAddress {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): NetAddress {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseNetAddress } as NetAddress;
 		while (reader.pos < end) {
@@ -93,7 +97,7 @@ export const NetAddress = {
 		const obj: any = {};
 		message.id !== undefined && (obj.id = message.id);
 		message.ip !== undefined && (obj.ip = message.ip);
-		message.port !== undefined && (obj.port = message.port);
+		message.port !== undefined && (obj.port = Math.round(message.port));
 		return obj;
 	},
 
@@ -115,7 +119,10 @@ const baseProtocolVersion: object = {
 };
 
 export const ProtocolVersion = {
-	encode(message: ProtocolVersion, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: ProtocolVersion,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (!message.p2p.isZero()) {
 			writer.uint32(8).uint64(message.p2p);
 		}
@@ -128,8 +135,9 @@ export const ProtocolVersion = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): ProtocolVersion {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): ProtocolVersion {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseProtocolVersion } as ProtocolVersion;
 		while (reader.pos < end) {
@@ -209,7 +217,10 @@ const baseDefaultNodeInfo: object = {
 };
 
 export const DefaultNodeInfo = {
-	encode(message: DefaultNodeInfo, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: DefaultNodeInfo,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.protocolVersion !== undefined) {
 			ProtocolVersion.encode(
 				message.protocolVersion,
@@ -243,8 +254,9 @@ export const DefaultNodeInfo = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): DefaultNodeInfo {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): DefaultNodeInfo {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseDefaultNodeInfo } as DefaultNodeInfo;
 		message.channels = new Uint8Array();
@@ -381,8 +393,8 @@ const baseDefaultNodeInfoOther: object = { txIndex: '', rpcAddress: '' };
 export const DefaultNodeInfoOther = {
 	encode(
 		message: DefaultNodeInfoOther,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.txIndex !== '') {
 			writer.uint32(10).string(message.txIndex);
 		}
@@ -392,8 +404,12 @@ export const DefaultNodeInfoOther = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): DefaultNodeInfoOther {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(
+		input: _m0.Reader | Uint8Array,
+		length?: number
+	): DefaultNodeInfoOther {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseDefaultNodeInfoOther } as DefaultNodeInfoOther;
 		while (reader.pos < end) {
@@ -507,9 +523,7 @@ export type Exact<P, I extends P> = P extends Builtin
 				never
 			>;
 
-// If you get a compile-error about 'Constructor<Long> and ... have no overlap',
-// add '--ts_proto_opt=esModuleInterop=true' as a flag when calling 'protoc'.
-if (util.Long !== Long) {
-	util.Long = Long as any;
-	configure();
+if (_m0.util.Long !== Long) {
+	_m0.util.Long = Long as any;
+	_m0.configure();
 }

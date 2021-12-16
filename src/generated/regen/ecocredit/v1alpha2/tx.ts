@@ -3226,7 +3226,8 @@ export const MsgAllowAskDenom = {
 		message.denom !== undefined && (obj.denom = message.denom);
 		message.displayDenom !== undefined &&
 			(obj.displayDenom = message.displayDenom);
-		message.exponent !== undefined && (obj.exponent = message.exponent);
+		message.exponent !== undefined &&
+			(obj.exponent = Math.round(message.exponent));
 		return obj;
 	},
 
@@ -3412,7 +3413,8 @@ export const MsgCreateBasket = {
 		message.name !== undefined && (obj.name = message.name);
 		message.displayName !== undefined &&
 			(obj.displayName = message.displayName);
-		message.exponent !== undefined && (obj.exponent = message.exponent);
+		message.exponent !== undefined &&
+			(obj.exponent = Math.round(message.exponent));
 		if (message.basketCriteria) {
 			obj.basketCriteria = message.basketCriteria.map((e) =>
 				e ? BasketCriteria.toJSON(e) : undefined

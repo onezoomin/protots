@@ -1,6 +1,6 @@
 /* eslint-disable */
-import { util, configure, Writer, Reader } from 'protobufjs/minimal';
-import * as Long from 'long';
+import Long from 'long';
+import _m0 from 'protobufjs/minimal';
 import { Header } from '../../../tendermint/types/types';
 import { Any } from '../../../google/protobuf/any';
 import { Duration } from '../../../google/protobuf/duration';
@@ -255,7 +255,10 @@ export interface Pool {
 const baseHistoricalInfo: object = {};
 
 export const HistoricalInfo = {
-	encode(message: HistoricalInfo, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: HistoricalInfo,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.header !== undefined) {
 			Header.encode(message.header, writer.uint32(10).fork()).ldelim();
 		}
@@ -265,8 +268,9 @@ export const HistoricalInfo = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): HistoricalInfo {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): HistoricalInfo {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseHistoricalInfo } as HistoricalInfo;
 		message.valset = [];
@@ -338,7 +342,10 @@ const baseCommissionRates: object = {
 };
 
 export const CommissionRates = {
-	encode(message: CommissionRates, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: CommissionRates,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.rate !== '') {
 			writer.uint32(10).string(message.rate);
 		}
@@ -351,8 +358,9 @@ export const CommissionRates = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): CommissionRates {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): CommissionRates {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseCommissionRates } as CommissionRates;
 		while (reader.pos < end) {
@@ -415,7 +423,10 @@ export const CommissionRates = {
 const baseCommission: object = {};
 
 export const Commission = {
-	encode(message: Commission, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: Commission,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.commissionRates !== undefined) {
 			CommissionRates.encode(
 				message.commissionRates,
@@ -431,8 +442,9 @@ export const Commission = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): Commission {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): Commission {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseCommission } as Commission;
 		while (reader.pos < end) {
@@ -505,7 +517,10 @@ const baseDescription: object = {
 };
 
 export const Description = {
-	encode(message: Description, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: Description,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.moniker !== '') {
 			writer.uint32(10).string(message.moniker);
 		}
@@ -524,8 +539,9 @@ export const Description = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): Description {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): Description {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseDescription } as Description;
 		while (reader.pos < end) {
@@ -615,7 +631,10 @@ const baseValidator: object = {
 };
 
 export const Validator = {
-	encode(message: Validator, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: Validator,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.operatorAddress !== '') {
 			writer.uint32(10).string(message.operatorAddress);
 		}
@@ -664,8 +683,9 @@ export const Validator = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): Validator {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): Validator {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseValidator } as Validator;
 		while (reader.pos < end) {
@@ -846,15 +866,19 @@ export const Validator = {
 const baseValAddresses: object = { addresses: '' };
 
 export const ValAddresses = {
-	encode(message: ValAddresses, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: ValAddresses,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		for (const v of message.addresses) {
 			writer.uint32(10).string(v!);
 		}
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): ValAddresses {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): ValAddresses {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseValAddresses } as ValAddresses;
 		message.addresses = [];
@@ -900,7 +924,10 @@ export const ValAddresses = {
 const baseDVPair: object = { delegatorAddress: '', validatorAddress: '' };
 
 export const DVPair = {
-	encode(message: DVPair, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: DVPair,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.delegatorAddress !== '') {
 			writer.uint32(10).string(message.delegatorAddress);
 		}
@@ -910,8 +937,9 @@ export const DVPair = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): DVPair {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): DVPair {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseDVPair } as DVPair;
 		while (reader.pos < end) {
@@ -966,15 +994,19 @@ export const DVPair = {
 const baseDVPairs: object = {};
 
 export const DVPairs = {
-	encode(message: DVPairs, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: DVPairs,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		for (const v of message.pairs) {
 			DVPair.encode(v!, writer.uint32(10).fork()).ldelim();
 		}
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): DVPairs {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): DVPairs {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseDVPairs } as DVPairs;
 		message.pairs = [];
@@ -1026,7 +1058,10 @@ const baseDVVTriplet: object = {
 };
 
 export const DVVTriplet = {
-	encode(message: DVVTriplet, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: DVVTriplet,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.delegatorAddress !== '') {
 			writer.uint32(10).string(message.delegatorAddress);
 		}
@@ -1039,8 +1074,9 @@ export const DVVTriplet = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): DVVTriplet {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): DVVTriplet {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseDVVTriplet } as DVVTriplet;
 		while (reader.pos < end) {
@@ -1108,15 +1144,19 @@ export const DVVTriplet = {
 const baseDVVTriplets: object = {};
 
 export const DVVTriplets = {
-	encode(message: DVVTriplets, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: DVVTriplets,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		for (const v of message.triplets) {
 			DVVTriplet.encode(v!, writer.uint32(10).fork()).ldelim();
 		}
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): DVVTriplets {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): DVVTriplets {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseDVVTriplets } as DVVTriplets;
 		message.triplets = [];
@@ -1173,7 +1213,10 @@ const baseDelegation: object = {
 };
 
 export const Delegation = {
-	encode(message: Delegation, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: Delegation,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.delegatorAddress !== '') {
 			writer.uint32(10).string(message.delegatorAddress);
 		}
@@ -1186,8 +1229,9 @@ export const Delegation = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): Delegation {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): Delegation {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseDelegation } as Delegation;
 		while (reader.pos < end) {
@@ -1258,8 +1302,8 @@ const baseUnbondingDelegation: object = {
 export const UnbondingDelegation = {
 	encode(
 		message: UnbondingDelegation,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.delegatorAddress !== '') {
 			writer.uint32(10).string(message.delegatorAddress);
 		}
@@ -1275,8 +1319,12 @@ export const UnbondingDelegation = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): UnbondingDelegation {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(
+		input: _m0.Reader | Uint8Array,
+		length?: number
+	): UnbondingDelegation {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseUnbondingDelegation } as UnbondingDelegation;
 		message.entries = [];
@@ -1359,8 +1407,8 @@ const baseUnbondingDelegationEntry: object = {
 export const UnbondingDelegationEntry = {
 	encode(
 		message: UnbondingDelegationEntry,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (!message.creationHeight.isZero()) {
 			writer.uint32(8).int64(message.creationHeight);
 		}
@@ -1380,10 +1428,11 @@ export const UnbondingDelegationEntry = {
 	},
 
 	decode(
-		input: Reader | Uint8Array,
+		input: _m0.Reader | Uint8Array,
 		length?: number
 	): UnbondingDelegationEntry {
-		const reader = input instanceof Reader ? input : new Reader(input);
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = {
 			...baseUnbondingDelegationEntry,
@@ -1480,8 +1529,8 @@ const baseRedelegationEntry: object = {
 export const RedelegationEntry = {
 	encode(
 		message: RedelegationEntry,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (!message.creationHeight.isZero()) {
 			writer.uint32(8).int64(message.creationHeight);
 		}
@@ -1500,8 +1549,9 @@ export const RedelegationEntry = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): RedelegationEntry {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): RedelegationEntry {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseRedelegationEntry } as RedelegationEntry;
 		while (reader.pos < end) {
@@ -1590,7 +1640,10 @@ const baseRedelegation: object = {
 };
 
 export const Redelegation = {
-	encode(message: Redelegation, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: Redelegation,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.delegatorAddress !== '') {
 			writer.uint32(10).string(message.delegatorAddress);
 		}
@@ -1606,8 +1659,9 @@ export const Redelegation = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): Redelegation {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): Redelegation {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseRedelegation } as Redelegation;
 		message.entries = [];
@@ -1698,7 +1752,10 @@ const baseParams: object = {
 };
 
 export const Params = {
-	encode(message: Params, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: Params,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.unbondingTime !== undefined) {
 			Duration.encode(
 				message.unbondingTime,
@@ -1720,8 +1777,9 @@ export const Params = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): Params {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): Params {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseParams } as Params;
 		while (reader.pos < end) {
@@ -1786,11 +1844,11 @@ export const Params = {
 				? Duration.toJSON(message.unbondingTime)
 				: undefined);
 		message.maxValidators !== undefined &&
-			(obj.maxValidators = message.maxValidators);
+			(obj.maxValidators = Math.round(message.maxValidators));
 		message.maxEntries !== undefined &&
-			(obj.maxEntries = message.maxEntries);
+			(obj.maxEntries = Math.round(message.maxEntries));
 		message.historicalEntries !== undefined &&
-			(obj.historicalEntries = message.historicalEntries);
+			(obj.historicalEntries = Math.round(message.historicalEntries));
 		message.bondDenom !== undefined && (obj.bondDenom = message.bondDenom);
 		return obj;
 	},
@@ -1814,8 +1872,8 @@ const baseDelegationResponse: object = {};
 export const DelegationResponse = {
 	encode(
 		message: DelegationResponse,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.delegation !== undefined) {
 			Delegation.encode(
 				message.delegation,
@@ -1828,8 +1886,12 @@ export const DelegationResponse = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): DelegationResponse {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(
+		input: _m0.Reader | Uint8Array,
+		length?: number
+	): DelegationResponse {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseDelegationResponse } as DelegationResponse;
 		while (reader.pos < end) {
@@ -1899,8 +1961,8 @@ const baseRedelegationEntryResponse: object = { balance: '' };
 export const RedelegationEntryResponse = {
 	encode(
 		message: RedelegationEntryResponse,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.redelegationEntry !== undefined) {
 			RedelegationEntry.encode(
 				message.redelegationEntry,
@@ -1914,10 +1976,11 @@ export const RedelegationEntryResponse = {
 	},
 
 	decode(
-		input: Reader | Uint8Array,
+		input: _m0.Reader | Uint8Array,
 		length?: number
 	): RedelegationEntryResponse {
-		const reader = input instanceof Reader ? input : new Reader(input);
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = {
 			...baseRedelegationEntryResponse,
@@ -1989,8 +2052,8 @@ const baseRedelegationResponse: object = {};
 export const RedelegationResponse = {
 	encode(
 		message: RedelegationResponse,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.redelegation !== undefined) {
 			Redelegation.encode(
 				message.redelegation,
@@ -2006,8 +2069,12 @@ export const RedelegationResponse = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): RedelegationResponse {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(
+		input: _m0.Reader | Uint8Array,
+		length?: number
+	): RedelegationResponse {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseRedelegationResponse } as RedelegationResponse;
 		message.entries = [];
@@ -2083,7 +2150,10 @@ export const RedelegationResponse = {
 const basePool: object = { notBondedTokens: '', bondedTokens: '' };
 
 export const Pool = {
-	encode(message: Pool, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: Pool,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.notBondedTokens !== '') {
 			writer.uint32(10).string(message.notBondedTokens);
 		}
@@ -2093,8 +2163,9 @@ export const Pool = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): Pool {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): Pool {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...basePool } as Pool;
 		while (reader.pos < end) {
@@ -2200,9 +2271,7 @@ function numberToLong(number: number) {
 	return Long.fromNumber(number);
 }
 
-// If you get a compile-error about 'Constructor<Long> and ... have no overlap',
-// add '--ts_proto_opt=esModuleInterop=true' as a flag when calling 'protoc'.
-if (util.Long !== Long) {
-	util.Long = Long as any;
-	configure();
+if (_m0.util.Long !== Long) {
+	_m0.util.Long = Long as any;
+	_m0.configure();
 }

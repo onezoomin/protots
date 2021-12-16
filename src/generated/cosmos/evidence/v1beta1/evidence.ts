@@ -1,6 +1,6 @@
 /* eslint-disable */
-import { util, configure, Writer, Reader } from 'protobufjs/minimal';
-import * as Long from 'long';
+import Long from 'long';
+import _m0 from 'protobufjs/minimal';
 import { Timestamp } from '../../../google/protobuf/timestamp';
 
 export const protobufPackage = 'cosmos.evidence.v1beta1';
@@ -23,7 +23,10 @@ const baseEquivocation: object = {
 };
 
 export const Equivocation = {
-	encode(message: Equivocation, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: Equivocation,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (!message.height.isZero()) {
 			writer.uint32(8).int64(message.height);
 		}
@@ -42,8 +45,9 @@ export const Equivocation = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): Equivocation {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): Equivocation {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseEquivocation } as Equivocation;
 		while (reader.pos < end) {
@@ -178,9 +182,7 @@ function numberToLong(number: number) {
 	return Long.fromNumber(number);
 }
 
-// If you get a compile-error about 'Constructor<Long> and ... have no overlap',
-// add '--ts_proto_opt=esModuleInterop=true' as a flag when calling 'protoc'.
-if (util.Long !== Long) {
-	util.Long = Long as any;
-	configure();
+if (_m0.util.Long !== Long) {
+	_m0.util.Long = Long as any;
+	_m0.configure();
 }

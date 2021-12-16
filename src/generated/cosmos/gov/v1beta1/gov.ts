@@ -1,6 +1,6 @@
 /* eslint-disable */
-import { util, configure, Writer, Reader } from 'protobufjs/minimal';
-import * as Long from 'long';
+import Long from 'long';
+import _m0 from 'protobufjs/minimal';
 import { Any } from '../../../google/protobuf/any';
 import { Duration } from '../../../google/protobuf/duration';
 import { Timestamp } from '../../../google/protobuf/timestamp';
@@ -228,7 +228,10 @@ export interface TallyParams {
 const baseTextProposal: object = { title: '', description: '' };
 
 export const TextProposal = {
-	encode(message: TextProposal, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: TextProposal,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.title !== '') {
 			writer.uint32(10).string(message.title);
 		}
@@ -238,8 +241,9 @@ export const TextProposal = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): TextProposal {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): TextProposal {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseTextProposal } as TextProposal;
 		while (reader.pos < end) {
@@ -293,7 +297,10 @@ export const TextProposal = {
 const baseDeposit: object = { proposalId: Long.UZERO, depositor: '' };
 
 export const Deposit = {
-	encode(message: Deposit, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: Deposit,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (!message.proposalId.isZero()) {
 			writer.uint32(8).uint64(message.proposalId);
 		}
@@ -306,8 +313,9 @@ export const Deposit = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): Deposit {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): Deposit {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseDeposit } as Deposit;
 		message.amount = [];
@@ -377,7 +385,10 @@ export const Deposit = {
 const baseProposal: object = { proposalId: Long.UZERO, status: 0 };
 
 export const Proposal = {
-	encode(message: Proposal, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: Proposal,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (!message.proposalId.isZero()) {
 			writer.uint32(8).uint64(message.proposalId);
 		}
@@ -423,8 +434,9 @@ export const Proposal = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): Proposal {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): Proposal {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseProposal } as Proposal;
 		message.totalDeposit = [];
@@ -590,7 +602,10 @@ const baseTallyResult: object = {
 };
 
 export const TallyResult = {
-	encode(message: TallyResult, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: TallyResult,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.yes !== '') {
 			writer.uint32(10).string(message.yes);
 		}
@@ -606,8 +621,9 @@ export const TallyResult = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): TallyResult {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): TallyResult {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseTallyResult } as TallyResult;
 		while (reader.pos < end) {
@@ -679,7 +695,10 @@ export const TallyResult = {
 const baseVote: object = { proposalId: Long.UZERO, voter: '', option: 0 };
 
 export const Vote = {
-	encode(message: Vote, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: Vote,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (!message.proposalId.isZero()) {
 			writer.uint32(8).uint64(message.proposalId);
 		}
@@ -692,8 +711,9 @@ export const Vote = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): Vote {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): Vote {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseVote } as Vote;
 		while (reader.pos < end) {
@@ -758,7 +778,10 @@ export const Vote = {
 const baseDepositParams: object = {};
 
 export const DepositParams = {
-	encode(message: DepositParams, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: DepositParams,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		for (const v of message.minDeposit) {
 			Coin.encode(v!, writer.uint32(10).fork()).ldelim();
 		}
@@ -771,8 +794,9 @@ export const DepositParams = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): DepositParams {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): DepositParams {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseDepositParams } as DepositParams;
 		message.minDeposit = [];
@@ -845,7 +869,10 @@ export const DepositParams = {
 const baseVotingParams: object = {};
 
 export const VotingParams = {
-	encode(message: VotingParams, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: VotingParams,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.votingPeriod !== undefined) {
 			Duration.encode(
 				message.votingPeriod,
@@ -855,8 +882,9 @@ export const VotingParams = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): VotingParams {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): VotingParams {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseVotingParams } as VotingParams;
 		while (reader.pos < end) {
@@ -909,7 +937,10 @@ export const VotingParams = {
 const baseTallyParams: object = {};
 
 export const TallyParams = {
-	encode(message: TallyParams, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: TallyParams,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.quorum.length !== 0) {
 			writer.uint32(10).bytes(message.quorum);
 		}
@@ -922,8 +953,9 @@ export const TallyParams = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): TallyParams {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): TallyParams {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseTallyParams } as TallyParams;
 		message.quorum = new Uint8Array();
@@ -1087,9 +1119,7 @@ function numberToLong(number: number) {
 	return Long.fromNumber(number);
 }
 
-// If you get a compile-error about 'Constructor<Long> and ... have no overlap',
-// add '--ts_proto_opt=esModuleInterop=true' as a flag when calling 'protoc'.
-if (util.Long !== Long) {
-	util.Long = Long as any;
-	configure();
+if (_m0.util.Long !== Long) {
+	_m0.util.Long = Long as any;
+	_m0.configure();
 }

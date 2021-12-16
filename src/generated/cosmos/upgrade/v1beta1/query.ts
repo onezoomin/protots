@@ -1,6 +1,6 @@
 /* eslint-disable */
-import { util, configure, Writer, Reader } from 'protobufjs/minimal';
-import * as Long from 'long';
+import Long from 'long';
+import _m0 from 'protobufjs/minimal';
 import { Plan } from '../../../cosmos/upgrade/v1beta1/upgrade';
 import { Any } from '../../../google/protobuf/any';
 
@@ -64,16 +64,17 @@ const baseQueryCurrentPlanRequest: object = {};
 export const QueryCurrentPlanRequest = {
 	encode(
 		_: QueryCurrentPlanRequest,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		return writer;
 	},
 
 	decode(
-		input: Reader | Uint8Array,
+		input: _m0.Reader | Uint8Array,
 		length?: number
 	): QueryCurrentPlanRequest {
-		const reader = input instanceof Reader ? input : new Reader(input);
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = {
 			...baseQueryCurrentPlanRequest,
@@ -116,8 +117,8 @@ const baseQueryCurrentPlanResponse: object = {};
 export const QueryCurrentPlanResponse = {
 	encode(
 		message: QueryCurrentPlanResponse,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.plan !== undefined) {
 			Plan.encode(message.plan, writer.uint32(10).fork()).ldelim();
 		}
@@ -125,10 +126,11 @@ export const QueryCurrentPlanResponse = {
 	},
 
 	decode(
-		input: Reader | Uint8Array,
+		input: _m0.Reader | Uint8Array,
 		length?: number
 	): QueryCurrentPlanResponse {
-		const reader = input instanceof Reader ? input : new Reader(input);
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = {
 			...baseQueryCurrentPlanResponse,
@@ -184,8 +186,8 @@ const baseQueryAppliedPlanRequest: object = { name: '' };
 export const QueryAppliedPlanRequest = {
 	encode(
 		message: QueryAppliedPlanRequest,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.name !== '') {
 			writer.uint32(10).string(message.name);
 		}
@@ -193,10 +195,11 @@ export const QueryAppliedPlanRequest = {
 	},
 
 	decode(
-		input: Reader | Uint8Array,
+		input: _m0.Reader | Uint8Array,
 		length?: number
 	): QueryAppliedPlanRequest {
-		const reader = input instanceof Reader ? input : new Reader(input);
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = {
 			...baseQueryAppliedPlanRequest,
@@ -248,8 +251,8 @@ const baseQueryAppliedPlanResponse: object = { height: Long.ZERO };
 export const QueryAppliedPlanResponse = {
 	encode(
 		message: QueryAppliedPlanResponse,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (!message.height.isZero()) {
 			writer.uint32(8).int64(message.height);
 		}
@@ -257,10 +260,11 @@ export const QueryAppliedPlanResponse = {
 	},
 
 	decode(
-		input: Reader | Uint8Array,
+		input: _m0.Reader | Uint8Array,
 		length?: number
 	): QueryAppliedPlanResponse {
-		const reader = input instanceof Reader ? input : new Reader(input);
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = {
 			...baseQueryAppliedPlanResponse,
@@ -318,8 +322,8 @@ const baseQueryUpgradedConsensusStateRequest: object = {
 export const QueryUpgradedConsensusStateRequest = {
 	encode(
 		message: QueryUpgradedConsensusStateRequest,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (!message.lastHeight.isZero()) {
 			writer.uint32(8).int64(message.lastHeight);
 		}
@@ -327,10 +331,11 @@ export const QueryUpgradedConsensusStateRequest = {
 	},
 
 	decode(
-		input: Reader | Uint8Array,
+		input: _m0.Reader | Uint8Array,
 		length?: number
 	): QueryUpgradedConsensusStateRequest {
-		const reader = input instanceof Reader ? input : new Reader(input);
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = {
 			...baseQueryUpgradedConsensusStateRequest,
@@ -386,8 +391,8 @@ const baseQueryUpgradedConsensusStateResponse: object = {};
 export const QueryUpgradedConsensusStateResponse = {
 	encode(
 		message: QueryUpgradedConsensusStateResponse,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.upgradedConsensusState !== undefined) {
 			Any.encode(
 				message.upgradedConsensusState,
@@ -398,10 +403,11 @@ export const QueryUpgradedConsensusStateResponse = {
 	},
 
 	decode(
-		input: Reader | Uint8Array,
+		input: _m0.Reader | Uint8Array,
 		length?: number
 	): QueryUpgradedConsensusStateResponse {
-		const reader = input instanceof Reader ? input : new Reader(input);
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = {
 			...baseQueryUpgradedConsensusStateResponse,
@@ -498,7 +504,7 @@ export class QueryClientImpl implements Query {
 			data
 		);
 		return promise.then((data) =>
-			QueryCurrentPlanResponse.decode(new Reader(data))
+			QueryCurrentPlanResponse.decode(new _m0.Reader(data))
 		);
 	}
 
@@ -512,7 +518,7 @@ export class QueryClientImpl implements Query {
 			data
 		);
 		return promise.then((data) =>
-			QueryAppliedPlanResponse.decode(new Reader(data))
+			QueryAppliedPlanResponse.decode(new _m0.Reader(data))
 		);
 	}
 
@@ -527,7 +533,7 @@ export class QueryClientImpl implements Query {
 			data
 		);
 		return promise.then((data) =>
-			QueryUpgradedConsensusStateResponse.decode(new Reader(data))
+			QueryUpgradedConsensusStateResponse.decode(new _m0.Reader(data))
 		);
 	}
 }
@@ -569,9 +575,7 @@ export type Exact<P, I extends P> = P extends Builtin
 				never
 			>;
 
-// If you get a compile-error about 'Constructor<Long> and ... have no overlap',
-// add '--ts_proto_opt=esModuleInterop=true' as a flag when calling 'protoc'.
-if (util.Long !== Long) {
-	util.Long = Long as any;
-	configure();
+if (_m0.util.Long !== Long) {
+	_m0.util.Long = Long as any;
+	_m0.configure();
 }

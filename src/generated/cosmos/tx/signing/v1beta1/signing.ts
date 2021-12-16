@@ -1,6 +1,6 @@
 /* eslint-disable */
-import { util, configure, Writer, Reader } from 'protobufjs/minimal';
-import * as Long from 'long';
+import Long from 'long';
+import _m0 from 'protobufjs/minimal';
 import { Any } from '../../../../google/protobuf/any';
 import { CompactBitArray } from '../../../../cosmos/crypto/multisig/v1beta1/multisig';
 
@@ -121,16 +121,20 @@ const baseSignatureDescriptors: object = {};
 export const SignatureDescriptors = {
 	encode(
 		message: SignatureDescriptors,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		for (const v of message.signatures) {
 			SignatureDescriptor.encode(v!, writer.uint32(10).fork()).ldelim();
 		}
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): SignatureDescriptors {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(
+		input: _m0.Reader | Uint8Array,
+		length?: number
+	): SignatureDescriptors {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseSignatureDescriptors } as SignatureDescriptors;
 		message.signatures = [];
@@ -186,8 +190,8 @@ const baseSignatureDescriptor: object = { sequence: Long.UZERO };
 export const SignatureDescriptor = {
 	encode(
 		message: SignatureDescriptor,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.publicKey !== undefined) {
 			Any.encode(message.publicKey, writer.uint32(10).fork()).ldelim();
 		}
@@ -203,8 +207,12 @@ export const SignatureDescriptor = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): SignatureDescriptor {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(
+		input: _m0.Reader | Uint8Array,
+		length?: number
+	): SignatureDescriptor {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseSignatureDescriptor } as SignatureDescriptor;
 		while (reader.pos < end) {
@@ -287,8 +295,8 @@ const baseSignatureDescriptor_Data: object = {};
 export const SignatureDescriptor_Data = {
 	encode(
 		message: SignatureDescriptor_Data,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.single !== undefined) {
 			SignatureDescriptor_Data_Single.encode(
 				message.single,
@@ -305,10 +313,11 @@ export const SignatureDescriptor_Data = {
 	},
 
 	decode(
-		input: Reader | Uint8Array,
+		input: _m0.Reader | Uint8Array,
 		length?: number
 	): SignatureDescriptor_Data {
-		const reader = input instanceof Reader ? input : new Reader(input);
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = {
 			...baseSignatureDescriptor_Data,
@@ -387,8 +396,8 @@ const baseSignatureDescriptor_Data_Single: object = { mode: 0 };
 export const SignatureDescriptor_Data_Single = {
 	encode(
 		message: SignatureDescriptor_Data_Single,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.mode !== 0) {
 			writer.uint32(8).int32(message.mode);
 		}
@@ -399,10 +408,11 @@ export const SignatureDescriptor_Data_Single = {
 	},
 
 	decode(
-		input: Reader | Uint8Array,
+		input: _m0.Reader | Uint8Array,
 		length?: number
 	): SignatureDescriptor_Data_Single {
-		const reader = input instanceof Reader ? input : new Reader(input);
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = {
 			...baseSignatureDescriptor_Data_Single,
@@ -469,8 +479,8 @@ const baseSignatureDescriptor_Data_Multi: object = {};
 export const SignatureDescriptor_Data_Multi = {
 	encode(
 		message: SignatureDescriptor_Data_Multi,
-		writer: Writer = Writer.create()
-	): Writer {
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (message.bitarray !== undefined) {
 			CompactBitArray.encode(
 				message.bitarray,
@@ -487,10 +497,11 @@ export const SignatureDescriptor_Data_Multi = {
 	},
 
 	decode(
-		input: Reader | Uint8Array,
+		input: _m0.Reader | Uint8Array,
 		length?: number
 	): SignatureDescriptor_Data_Multi {
-		const reader = input instanceof Reader ? input : new Reader(input);
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = {
 			...baseSignatureDescriptor_Data_Multi,
@@ -629,9 +640,7 @@ export type Exact<P, I extends P> = P extends Builtin
 				never
 			>;
 
-// If you get a compile-error about 'Constructor<Long> and ... have no overlap',
-// add '--ts_proto_opt=esModuleInterop=true' as a flag when calling 'protoc'.
-if (util.Long !== Long) {
-	util.Long = Long as any;
-	configure();
+if (_m0.util.Long !== Long) {
+	_m0.util.Long = Long as any;
+	_m0.configure();
 }

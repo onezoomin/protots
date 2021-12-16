@@ -1,6 +1,6 @@
 /* eslint-disable */
-import { util, configure, Writer, Reader } from 'protobufjs/minimal';
-import * as Long from 'long';
+import Long from 'long';
+import _m0 from 'protobufjs/minimal';
 
 export const protobufPackage = 'cosmos.base.snapshots.v1beta1';
 
@@ -22,7 +22,10 @@ export interface Metadata {
 const baseSnapshot: object = { height: Long.UZERO, format: 0, chunks: 0 };
 
 export const Snapshot = {
-	encode(message: Snapshot, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: Snapshot,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		if (!message.height.isZero()) {
 			writer.uint32(8).uint64(message.height);
 		}
@@ -44,8 +47,9 @@ export const Snapshot = {
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): Snapshot {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): Snapshot {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseSnapshot } as Snapshot;
 		message.hash = new Uint8Array();
@@ -104,8 +108,10 @@ export const Snapshot = {
 		const obj: any = {};
 		message.height !== undefined &&
 			(obj.height = (message.height || Long.UZERO).toString());
-		message.format !== undefined && (obj.format = message.format);
-		message.chunks !== undefined && (obj.chunks = message.chunks);
+		message.format !== undefined &&
+			(obj.format = Math.round(message.format));
+		message.chunks !== undefined &&
+			(obj.chunks = Math.round(message.chunks));
 		message.hash !== undefined &&
 			(obj.hash = base64FromBytes(
 				message.hash !== undefined ? message.hash : new Uint8Array()
@@ -139,15 +145,19 @@ export const Snapshot = {
 const baseMetadata: object = {};
 
 export const Metadata = {
-	encode(message: Metadata, writer: Writer = Writer.create()): Writer {
+	encode(
+		message: Metadata,
+		writer: _m0.Writer = _m0.Writer.create()
+	): _m0.Writer {
 		for (const v of message.chunkHashes) {
 			writer.uint32(10).bytes(v!);
 		}
 		return writer;
 	},
 
-	decode(input: Reader | Uint8Array, length?: number): Metadata {
-		const reader = input instanceof Reader ? input : new Reader(input);
+	decode(input: _m0.Reader | Uint8Array, length?: number): Metadata {
+		const reader =
+			input instanceof _m0.Reader ? input : new _m0.Reader(input);
 		let end = length === undefined ? reader.len : reader.pos + length;
 		const message = { ...baseMetadata } as Metadata;
 		message.chunkHashes = [];
@@ -257,9 +267,7 @@ export type Exact<P, I extends P> = P extends Builtin
 				never
 			>;
 
-// If you get a compile-error about 'Constructor<Long> and ... have no overlap',
-// add '--ts_proto_opt=esModuleInterop=true' as a flag when calling 'protoc'.
-if (util.Long !== Long) {
-	util.Long = Long as any;
-	configure();
+if (_m0.util.Long !== Long) {
+	_m0.util.Long = Long as any;
+	_m0.configure();
 }
